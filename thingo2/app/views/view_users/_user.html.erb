@@ -1,0 +1,5 @@
+<% @users.each do |x| %>
+<%= link_to image_tag x.spec.avatar.url(:thumb), {:action => 'show', :id => x.id} %><br>
+<%= x.email %><br>
+<% end %>
+	

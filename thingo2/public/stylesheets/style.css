@@ -1,0 +1,177 @@
+body{
+font-size:1em;
+font: "Helvetica Neue LT com", Helvetica, Arial, sans-serif;
+color: #536376;
+
+}
+
+ .kwicks {  
+     list-style: none;  
+     position: relative;  
+     margin: 0;  
+     padding: 0; 
+	 background-image:url(/images/no_flicker.jpg); /*some browsers are to slow when aligning the menu items via jQuery and so the background shines through, this prevents this flickering*/
+
+ }  
+ .kwicks li{  
+    display: block;  
+    overflow: hidden;  
+    padding: 0;  
+    cursor: pointer;  
+	float: left;
+	width: 125px;
+	height: 40px;
+	margin-right: 0px;
+	background-image:url(/images/kwicks_sprite.jpg);
+	background-repeat:no-repeat;
+}
+
+
+
+.kwicks a{
+	display:block;
+	height:40px;
+	text-indent:-9999px;
+	outline:none;
+}
+
+#kwick1 {
+	background-position:0px 0px;
+}
+#kwick2 {
+	background-position:-200px 0px;
+}
+
+
+
+
+
+#kwick3 {
+	background-position:-400px 0px;
+}
+#kwick4 { 
+	background-position:-600px 0px;
+}
+#kwick5 {
+	background-position:-800px 0px;
+}
+#kwick6 {
+	background-position:-1000px 0px;
+}
+#kwick7 {
+	background-position:-1200px 0px;
+}
+#kwick8 { 
+	background-position:-1400px 0px;
+}
+#kwick1.active, #kwick1:hover { 
+	background-position: 0 bottom;
+}
+#kwick2.active, #kwick2:hover{
+	background-position: -200px bottom;
+	
+}
+#kwick3.active, #kwick3:hover {
+	background-position: -400px bottom;
+}
+#kwick4.active, #kwick4:hover {
+	background-position: -600px bottom; 
+}
+#kwick5.active, #kwick5:hover { 
+	background-position: -800px bottom;
+}
+#kwick6.active, #kwick6:hover{
+	background-position: -1000px bottom;
+}
+#kwick7.active, #kwick7:hover {
+	background-position: -1200px bottom;
+}
+#kwick8.active, #kwick8:hover {
+	background-position: -1400px bottom; 
+}
+
+#kwick1 a{
+	background-image:url(/images/end.jpg);
+	background-repeat:no-repeat;
+	background-position: left 0px;
+}
+
+#kwick1 a:hover{
+	background-position: left -160px;
+}
+
+#kwick8 a{
+	background-image:url(/images/end.jpg);
+	background-repeat:no-repeat;
+	background-position: right -40px;
+}
+#kwick8 a:hover{
+	background-position: right -240px;
+}
+/*Credits: Dynamic Drive CSS Library */
+/*URL: photoalbum/ */
+
+.gallerycontainer{
+position: relative;
+width: 500px;
+height: 450px;
+
+/*Add a height attribute and set to largest image's height to prevent overlaying*/
+}
+
+.thumbnail img{
+border: 1px solid white;
+margin: 0 5px 5px 0;
+}
+
+.thumbnail:hover{
+background-color: white;
+}
+
+.thumbnail:hover img{
+border: 1px solid grey;
+}
+
+.thumbnail span{ /*CSS for enlarged image*/
+position: absolute;
+padding: 0px;
+left: -1000px;
+border: 0px dashed gray;
+visibility: hidden;
+color: black;
+text-decoration: none;
+background-color: white;
+}
+
+.thumbnail span img{ /*CSS for enlarged image*/
+border-width: 0;
+padding: 0px;
+}
+
+.thumbnail:hover span{ /*CSS for enlarged image*/
+visibility: visible;
+position: absolute;
+top: 0px;
+left: 0px; /*position where enlarged image should offset horizontally */
+background-color: white;
+z-index: 50;
+}
+
+#globalcssshowpage{
+	position: relative;
+	top: 170px;
+	left: 170px;
+}
+
+#globaldescription {
+	position: absolute;
+	top: 20px;
+	left: 300px;
+}
+#littlepic{
+	position: relative;
+	top: 10px;
+	width: 300px;
+	height: 400px;
+}
+

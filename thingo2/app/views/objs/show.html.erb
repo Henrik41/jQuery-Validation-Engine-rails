@@ -1,0 +1,77 @@
+<div id="globalcssshowpage">
+
+<div class="gallerycontainer">
+
+<br>
+	<div id="littlepic">
+		  <%= image_tag @obj.avatar.url(:medium) %>
+<p>
+
+	  <% @albums.each do |photo| %>
+	<a class="thumbnail" href="#thumb">
+		
+	     <%= image_tag photo.avatar.url(:thumb) %>
+
+		<span>  <%= image_tag photo.avatar.url(:medium), {:width => "200px", :height =>"200px", :border => "0"}  %>	</span></a>
+	  <% end %>
+	    </div>
+		
+	
+		</div>
+	<br><br>
+		<%= render 'formpic' %>
+
+		
+	<div id="globaldescription">	
+
+  <b>Idthingo:</b>
+  <%= @obj.idthingo %>
+
+
+<p>
+  <b>Name:</b>
+  <%= @obj.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @obj.description %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @obj.category%>
+<% @obj.category2s.each do |x|  %>
+<%= "| "+x.category %>
+<% end %>
+</p>
+
+<p>
+  <b>Priv:</b>
+  <% if @obj.priv %>
+    This object is private
+  <% else %>
+	This object is public
+<% end %>
+</p>
+
+ 
+<div id="editprofile">
+	
+	<h1>Change Parameter</h1>
+
+	
+     <a id="close_x" class="close sprited" href="#">close</a>
+</div>
+<div id="facecomment">
+<%= form_for :commenta, :url=> { :action => "save_comment" } do |f| %>
+
+  <%= f.hidden_field :commentable_id %>
+  <%= f.text_area :comment, :rows => 3, :cols => 70 %>
+   <%= submit_tag "Save Comment", :class => "submit" %>
+<% end %>
+</div>
+<%= link_to 'Edit', edit_obj_path(@obj) %> |
+<%= link_to 'Back', objs_path %>
+</div>
+</div>

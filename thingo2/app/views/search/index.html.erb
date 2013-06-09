@@ -1,0 +1,11 @@
+<%= form_for @search, :url => {:action => 'person'} do |f| %>
+  <%= f.label :name_contains %>
+  <%= f.text_field :name_contains %><br />
+  <%= f.submit "Search" %>
+<% end %>
+
+<% for obj in @usersa %>
+
+    <%= obj.name %> <br>
+
+<% end %>

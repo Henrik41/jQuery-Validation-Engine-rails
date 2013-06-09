@@ -1,0 +1,58 @@
+<%= nested_form_for @obj, :html => { :multipart => true }  do |f| %>
+
+<div class="field">
+
+  <%= f.hidden_field :idthingo %>
+</div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+
+	<%= f.fields_for :category2s do |f| %>
+
+
+	    <%= f.label :category %><br />
+	    <%= f.text_field :category %>
+	
+
+		<%= f.link_to_remove "Remove this category" %>
+	<% end %>
+	
+	<%= f.link_to_add "Add a category", :category2s %>
+
+  </div>
+  <div class="field">
+    <%= f.label :priv %><br />
+    <%= f.check_box :priv %>
+  </div>
+<div class="field">
+	    Add a Picture: <%= f.file_field :avatar %>
+	</div>
+	
+	<%= f.fields_for :parametres do |f| %>
+
+	  <div class="field">
+	    <%= f.label :name %><br />
+	    <%= f.text_field :name %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :valu %><br />
+	    <%= f.text_field :valu %>
+	  </div>
+		<%= f.link_to_remove "Remove this Attribute" %>
+	<% end %>
+	
+	<%= f.link_to_add "Add an attribute", :parametres %>
+	
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

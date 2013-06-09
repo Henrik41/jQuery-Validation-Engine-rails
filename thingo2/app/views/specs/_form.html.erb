@@ -1,0 +1,78 @@
+<div class="cssform" >
+<%= form_for @spec, :html => { :multipart => true }  do |f| %>
+  <% if @spec.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spec.errors.count, "error") %> prohibited this spec from being saved:</h2>
+
+      <ul>
+      <% @spec.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>
+  <div class="field">
+    <label for="user"> <%= "First name" %></label>
+    <%= f.text_field :name %>
+  </div>
+</p>
+
+<p>
+  <div class="field">
+    <label for="lastname"><%= "Last name" %></label>
+    <%= f.text_field :lastname %>
+  </div>
+</p>
+<p>
+  <div class="field">
+    <label for="sex"><%= "Sex" %></label>
+    <%= f.text_field :sex %>
+  </div>
+</p>
+<p>
+  <div class="field">
+    <label for="date"><%= "Date of Birth" %></label>
+    <%= f.date_select :birth %>
+  </div>
+</p>
+<p>
+  <div class="field">
+    <label for="whoiam"><%= "WhoIam" %></label>
+    <%= f.text_area :whoIam,  :cols => 50, :rows => 5 %>
+  </div>
+</p>
+<p>
+  <div class="field">
+    <label for="country"><%= f.label :country %></label>
+    <%= f.text_field :country %>
+  </div>
+</p>
+	<p>
+  <div class="field">
+    <label for="company"><%= f.label :company %></label>
+    <%= f.text_field :company %>
+  </div>
+</p>
+<p>
+  <div class="field">
+    <label for="position"><%= f.label :position %></label>
+    <%= f.text_field :position %>
+  </div>
+</p>
+
+<p>
+  <div class="field">
+    <label for="website"><%= f.label :website %></label>
+    <%= f.text_field :website %>
+  </div></p>
+_______________________________
+<br><%= image_tag @user.spec.avatar.url(:small) %>
+   Choose New Picture: <%= f.file_field :avatar %>
+  <%= f.submit %>
+
+<% end %>
+
+
+</div>

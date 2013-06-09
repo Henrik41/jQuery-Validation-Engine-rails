@@ -1,0 +1,68 @@
+<div class="bolda">
+You are following <%= @user.following_users.count %> 
+<% if @user.following_users.count < 2 %>
+person. <br>
+<% else %>
+people. <br>
+<% end %>
+
+
+<% @followers.each do |x| %><br>
+<div class="followa">
+	<div class="box1">
+		<div class="box1a">
+			<div class="imageborder2">
+<%= image_tag x.spec.avatar.url(:small) %>
+         </div>
+</div>
+<div class="box1b">
+<%= x.spec.name %>
+<%= x.spec.lastname %>
+
+</div> 
+    </div>
+
+<div class="box2">
+<%= link_to "view his profile" %>
+</div>
+<br>
+<br>
+</div>
+<% end %>
+<br>
+
+<br>
+<%= link_to "view more" %>
+</div>
+
+<br>
+
+<div class="bolda2">
+
+You are following <%= @user.follows_by_type('Obj').count %> object<br>
+
+<% @followobj.each do |x| %><br>
+<div class="followa">
+	<div class="box1">
+		<div class="box1a">
+			<div class="imageborder2">
+<%= image_tag x.avatar.url(:small) %>
+         </div>
+</div>
+<div class="box1b">
+<%= x.name %> 	</div> 
+	    </div>
+
+	<div class="box2">
+	<%= link_to "view his profile" %>
+	</div>
+	<br>
+	<br>
+	</div>
+<% end %>
+<br>
+
+<br>
+<%= link_to "view more" %>
+
+</div>

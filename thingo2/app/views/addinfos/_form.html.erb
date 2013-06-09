@@ -1,0 +1,29 @@
+<%= form_for(@addinfo) do |f| %>
+  <% if @addinfo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@addinfo.errors.count, "error") %> prohibited this addinfo from being saved:</h2>
+
+      <ul>
+      <% @addinfo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :spec_id %><br />
+    <%= f.text_field :spec_id %>
+  </div>
+  <div class="field">
+    <%= f.label :addlabel %><br />
+    <%= f.text_field :addlabel %>
+  </div>
+  <div class="field">
+    <%= f.label :addvalue %><br />
+    <%= f.text_field :addvalue %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

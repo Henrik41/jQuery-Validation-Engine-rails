@@ -1,0 +1,2 @@
+module ViewUsersHelper
+end

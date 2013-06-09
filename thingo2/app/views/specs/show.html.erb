@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @spec.name %>
+</p>
+  <%= image_tag @spec.avatar.url %>
+  <%= image_tag @spec.avatar.url(:thumb) %>
+  <%= image_tag @spec.avatar.url(:medium) %>
+
+
+
+<%= link_to 'Edit', edit_spec_path(@spec) %> |
+<%= link_to 'Back', specs_path %>

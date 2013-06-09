@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  spec_id: 1
+  addlabel: MyString
+  addvalue: MyString
+
+two:
+  spec_id: 1
+  addlabel: MyString
+  addvalue: MyString

@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<%= stylesheet_link_tag "header" %>
+<%= stylesheet_link_tag "style" %>
+
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag 'jquery','kwicks','custom','jquery.lightbox_me','jquery-ui.min.js', 'nested_form' %>
+<%= ajaxful_rating_style %>
+<%= ajaxful_rating_script %>
+<%= csrf_meta_tag %>
+
+
+
+<style type="text/css">
+.six {
+	font-size: 36px;
+}
+.six2 {
+	font-size: 12px;
+}
+.six {
+	font-weight: bold;
+}
+#maincontainer{
+    float: left;
+	width:1200px;
+	position: absolute;
+	height:180px;
+	top: 0px;
+}
+#apDiv1 {
+	font: "Helvetica Neue LT com", Helvetica, Arial, sans-serif;
+	color: #536376;
+	font-size: 16px;
+	position:absolute;
+	width:268px;
+	height:62px;
+	z-index:1;
+	left: 924px;
+	top: 30px;
+	font-size: 19px;
+}
+#apDiv4 {
+	position:absolute;
+	left:155px;
+	top:15px;
+	width:310px;
+	height:104px;
+	z-index:4;
+		
+
+}
+#apDiv5 {
+	position:absolute;
+	left:170px;
+	top:120px;
+	width:1000px;
+	height:54px;
+	z-index:5;
+}
+#rightpanel {
+		position:absolute;
+		left:950px;
+		top:200px;
+		width:250px;
+		height:308px;
+		z-index:2;
+
+}
+
+div.progress-container {
+  border: 0px solid #ccc; 
+  width: 160px; 
+  margin: 2px 5px 2px 0; 
+  padding: 1px; 
+  float: left; 
+  background: white;
+  position:relative;
+
+}
+
+
+
+div.progress-container div {
+  background-color: #99ccff; 
+  height: 20px;
+}
+div.progress-container  span {
+ width:160px;
+ text-align:center;
+ float:left;
+ font: normal 12px Arial,sans-serif;
+ margin-top: 3px;
+
+}
+
+.kwicks ul {
+	width: 125px;
+	top: 40px;
+	display:none;
+	
+}
+
+#kwick2 a:hover {
+
+display: l;
+	
+}
+
+ul#css3menu1,ul#css3menu1 ul{
+	margin:0;list-style:none;padding:0;background-color:#dedede;border-width:0px;border-style:solid;border-color:#5f5f5f;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
+ul#css3menu1 ul{
+	display:none;position:absolute;left:0;top:100%;-moz-box-shadow:3.5px 3.5px 5px #000000;-webkit-box-shadow:3.5px 3.5px 5px #000000;box-shadow:3.5px 3.5px 5px #000000;padding:0 10px 10px;background-color:#FFFFFF;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px;border-color:#d4d4d4;}
+ul#css3menu1 li:hover>*{
+	display:block;}
+ul#css3menu1 li:hover{
+	position:relative;}
+ul#css3menu1 ul ul{
+	position:absolute;left:100%;top:0;}
+ul#css3menu1{
+	display:block;font-size:0;float:left;}
+ul#css3menu1 li{
+	display:block;white-space:nowrap;font-size:0;float:left;}
+ul#css3menu1>li,ul#css3menu1 li{
+	margin:0;}
+ul#css3menu1 a:active, ul#css3menu1 a:focus{
+	outline-style:none;}
+ul#css3menu1 a{
+	display:block;vertical-align:middle;text-align:left;text-decoration:none;font:14px Trebuchet MS,sans-serif;color:#000000;text-shadow:#FFF 0 0 1px;cursor:pointer;padding:10px;background-color:#c1c1c1;background-image:url("/images/mainbk.png");background-repeat:repeat;background-position:0 0;border-width:0 0 0 1px;border-style:solid;border-color:#C0C0C0;}
+ul#css3menu1 ul li{
+	float:none;margin:10px 0 0;}
+ul#css3menu1 ul a{
+	text-align:left;padding:4px;background-color:#FFFFFF;background-image:none;border-width:0;border-radius:0px;-moz-border-radius:0px;-webkit-border-radius:0px;font:14px Tahoma,sans-serif;color:#000;text-decoration:none;}
+ul#css3menu1 li:hover>a{
+	background-color:#99ccff;border-color:#C0C0C0;border-style:solid;font:14px Trebuchet MS,sans-serif;color:#000000;text-decoration:none;text-shadow:#FFF 0 0 1px;background-image:url("mainbk.png");background-position:0 100px;z-index:12;}
+ul#css3menu1 img{
+	border:none;vertical-align:middle;margin-right:10px;}
+ul#css3menu1 img.over{
+	display:none;}
+ul#css3menu1 li:hover > a img.def{
+	display:none;}
+ul#css3menu1 li:hover > a img.over{
+	display:inline;}
+ul#css3menu1 span{
+	display:block;overflow:visible;background-position:right center;background-repeat:no-repeat;padding-right:0px;}
+ul#css3menu1 ul li:hover>a{
+	background-color:#FFFFFF;background-image:none;font:14px Tahoma,sans-serif;color:#868686;text-decoration:none;z-index:14;}
+ul#css3menu1 li.topfirst>a{
+	height:22px;width:90px;text-align:center;line-height:22px;border-radius:5px 0 0 5px;-moz-border-radius:5px 0 0 5px;-webkit-border-radius:5px;-webkit-border-top-right-radius:0;-webkit-border-bottom-right-radius:0;}
+ul#css3menu1 li.topfirst:hover>a{
+	line-height:22px;z-index:14;}
+ul#css3menu1 li.topmenu>a{
+	height:22px;line-height:22px;width:90px;text-align:center;}
+ul#css3menu1 li.topmenu:hover>a{
+	line-height:22px;}
+ul#css3menu1 li.toplast>a{width:90px;text-align:center;
+	height:22px;line-height:22px;border-radius:0 5px 5px 0;-moz-border-radius:0 5px 5px 0;-webkit-border-radius:0;-webkit-border-top-right-radius:5px;-webkit-border-bottom-right-radius:5px;z-index:14;}
+ul#css3menu1 li.toplast:hover>a{
+	line-height:22px;}
+
+#contain_edit_spec{
+	position:absolute;
+		top: 150px;
+		left: 170px;
+
+	}
+</style>
+
+
+</head>
+
+<body>
+
+	<div id="maincontainer">
+	<div id="apDiv4">
+<p><img src="/images/LogoColorNoText.jpg" width="64" height="64" alt="thingo-logo" /> <span class="six">THINGO          </span></p> </div>
+
+
+<div id="apDiv1">Welcome back <%= @user.spec.name %> <%= image_tag ("empty-face3.jpg")%><br> <%= link_to "settings" %> <%= link_to "sign out", destroy_user_session_path %> </div>
+<div id="apDiv5">
+
+
+	<ul id="css3menu1" class="topmenu">
+		<li class="topfirst"><a href="#" title="Home">Home</a></li>
+		<li class="topmenu"><a href="/myinfo/show" title="Profile"><span>Profile</span></a>
+		<ul>
+<% @pathway = "/specs/" +  current_user.id.to_s + "/edit" %>
+			<li><a href="<%= @pathway %>" title="Edit Profile">Edit Profile</a></li>
+			<li><a href="/myinfo/showbiz" title="Company Profile">Company Profile</a></li>
+			<% @pathwaybiz = "/bizspecs/" +  current_user.id.to_s + "/edit" %>
+			<li><a href="<%= @pathwaybiz %>" title="Edit Company Profile">Edit Company Profile</a></li>
+		</ul>
+
+		</li>
+		<li class="topmenu"><a href="/objs" title="My Items"><span>My Items</span></a>
+		<ul>
+			<li><a href="#" title="Favorite Items">Favorite Items</a></li>
+			<li><a href="#" title="Edit Items">Edit Items</a></li>
+			<li><a href="/objs/new" title="Add an Item">Add an Item</a></li>
+			<li><a href="#" title="Attributes">Attributes</a></li>
+		</ul>
+
+		</li>
+		<li class="topmenu"><a href="#" title="Search"><span>Search</span></a>
+		<ul>
+			<li><a href="#" title="Search an Item">Search an Item</a></li>
+			<li><a href="#" title="Search a Company">Search a Company</a></li>
+			<li><a href="#" title="Search a Group">Search a Group</a></li>
+		</ul>
+
+		</li>
+		<li class="topmenu"><a href="#" title="Connections"><span>Connections</span></a>
+		<ul>
+			<li><a href="#" title="Who do I follow">Who do I follow</a></li>
+			<li><a href="#" title="Who follows me">Who follows me</a></li>
+		</ul>
+
+		</li>
+		<li class="topmenu"><a href="#" title="Suggestions"><span>Suggestions</span></a>
+		<ul>
+			<li><a href="#" title="Items of the Months">Items of the Month</a></li>
+			<li><a href="#" title="Image Gallery">Image Gallery</a></li>
+		</ul>
+
+		</li>
+		<li class="topmenu"><a href="#" title="My Groups"><span>My Groups</span></a>
+		<ul>
+			<li><a href="#" title="Create Group">Create Group</a></li>
+			<li><a href="#" title="Suggest a Group">Suggest a Group</a></li>
+		</ul>
+
+		</li>
+		<li class="topmenu"><a href="#" title="Messages"><span>Messages</span></a>
+		<ul>
+			<li><a href="#" title="Inbox">Inbox</a></li>
+			<li><a href="#" title="Outbox">Outbox</a></li>
+			<li><a href="#" title="Invite Friends">Invite Friends</a></li>
+		</ul>
+
+		</li>
+		<li class="toplast"><a href="#" title="Blog">Blog</a></li>
+	</ul>
+
+
+	<p style="display:none"><a href="http://css3menu.com/">CSS3 Menu Button Css3Menu.com</a></p>
+</div>
+
+
+<%= yield %>
+
+</body>
+
+</html>

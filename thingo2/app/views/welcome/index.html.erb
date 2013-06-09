@@ -1,0 +1,15 @@
+<h1>Welcome</h1>
+
+
+<% for user in @user do %>
+	<% if user.spec %>
+	<%= user.email %>
+	<%= image_tag user.spec.avatar.url(:thumb) %>
+<br/>
+	<% else %> no pic! sorry
+	<%end%>
+<%end%>
+<br/>
+
+
+<img alt="Rails" src="http://localhost:3000/images/rails.png" />

@@ -1,0 +1,2 @@
+module BizspecsHelper
+end

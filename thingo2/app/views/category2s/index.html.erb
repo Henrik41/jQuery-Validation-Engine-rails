@@ -1,0 +1,25 @@
+<h1>Listing category2s</h1>
+
+<table>
+  <tr>
+    <th>Obj</th>
+    <th>Category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @category2s.each do |category2| %>
+  <tr>
+    <td><%= category2.obj_id %></td>
+    <td><%= category2.category %></td>
+    <td><%= link_to 'Show', category2 %></td>
+    <td><%= link_to 'Edit', edit_category2_path(category2) %></td>
+    <td><%= link_to 'Destroy', category2, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category2', new_category2_path %>

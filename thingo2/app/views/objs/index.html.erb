@@ -1,0 +1,94 @@
+
+<div id="apDiv3">
+	<h1>My Items List</h1>
+
+ <%= paginate @objs %>
+
+
+
+<% @objs.each do |obj| %>
+<div id="container">
+ 	<div id="listposition">
+	<div id="picposition">
+		<div id="picborder">
+    <%= image_tag obj.avatar.url(:thumb) %>
+      	</div>
+<div id="afterpicposition2"></div>    
+<div id ="idnumber">
+    <%= obj.idthingo %>
+</div>
+</div>
+<div id="idcontainer">
+
+<div id="userpic">
+
+	<%= image_tag (@user.spec.avatar.url(:thumb)) %>
+	<h5>Message <%= @user.spec.name %></h5> 
+	<h5>Add <%= @user.spec.name %> as a friend</h5>
+
+	<% @num = 'followid' + obj.id.to_s %>
+	<div id =<%= @num %>>
+	 	<% if @user.following?(obj) %>
+	 	
+		<%= form_tag({:action => 'unfollow', :id => obj.id}, :remote => true) do %>
+		<%= submit_tag 'Unfollow this object' %>
+		 <% end %>
+	
+	<% else %>
+			<%= form_tag({:action => 'follow', :id => obj.id}, :remote => true) do %>
+				<%= submit_tag 'Follow this object' %>
+	 		<% end %>
+	<%end%>
+
+	</div>
+	
+
+	
+
+
+</div>
+
+   <h3> <%= obj.name %>	<%= ratings_for obj, :dimension => :speed %> <%= obj.rates(:speed).size %> votes</h3>
+    <%= obj.description %> <br>
+
+
+</div>
+</div>
+</div>
+<br>
+<% if obj.comments %>
+  <% obj.comments.first3.each do |com| %>
+
+      <% @a = com.user_id %>
+      <% @b = User.find(@a) %>
+<div id="facecomment">
+     <br><%= image_tag @b.spec.avatar.url(:small) %>
+      <%= com.comment %><br>
+posted <%= time_ago_in_words(com.created_at) %> ago
+
+<%= link_to 'remove this comment', {:action => "remove_comment", :id => com.id, :idobj => obj.id } %>
+
+</div>
+  <% end %>
+<%end%>
+
+<div id="facecomment">
+<%= form_for obj.comments.new, :url=> { :controller => "objs", :action => "save_comment_through_index" } do |f| %>
+
+  <%= f.hidden_field :commentable_id %>
+  <%= f.text_area :comment, :rows => 3, :cols => 70 %>
+   <%= submit_tag "Save Comment", :class => "submit" %>
+<% end %>
+</div>
+<br>
+    <td><%= link_to 'Show', obj %></td>
+    <td><%= link_to 'Edit', edit_obj_path(obj) %></td>
+    <td><%= link_to 'Destroy', obj, :confirm => 'Are you sure?', :method => :delete %></td>
+
+<% end %>
+
+
+<br />
+
+<%= link_to 'New Obj', new_obj_path %>
+</div>

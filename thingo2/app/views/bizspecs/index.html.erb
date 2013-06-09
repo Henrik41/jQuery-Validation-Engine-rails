@@ -1,0 +1,43 @@
+<h1>Listing bizspecs</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>Province</th>
+    <th>Country</th>
+    <th>Tel</th>
+    <th>Fax</th>
+    <th>Email</th>
+    <th>Website</th>
+    <th>Btype</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bizspecs.each do |bizspec| %>
+  <tr>
+    <td><%= bizspec.user_id %></td>
+    <td><%= bizspec.name %></td>
+    <td><%= bizspec.address %></td>
+    <td><%= bizspec.city %></td>
+    <td><%= bizspec.province %></td>
+    <td><%= bizspec.country %></td>
+    <td><%= bizspec.tel %></td>
+    <td><%= bizspec.fax %></td>
+    <td><%= bizspec.email %></td>
+    <td><%= bizspec.website %></td>
+    <td><%= bizspec.btype %></td>
+    <td><%= link_to 'Show', bizspec %></td>
+    <td><%= link_to 'Edit', edit_bizspec_path(bizspec) %></td>
+    <td><%= link_to 'Destroy', bizspec, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bizspec', new_bizspec_path %>

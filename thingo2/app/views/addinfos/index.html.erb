@@ -1,0 +1,27 @@
+<h1>Listing addinfos</h1>
+
+<table>
+  <tr>
+    <th>Spec</th>
+    <th>Addlabel</th>
+    <th>Addvalue</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @addinfos.each do |addinfo| %>
+  <tr>
+    <td><%= addinfo.spec_id %></td>
+    <td><%= addinfo.addlabel %></td>
+    <td><%= addinfo.addvalue %></td>
+    <td><%= link_to 'Show', addinfo %></td>
+    <td><%= link_to 'Edit', edit_addinfo_path(addinfo) %></td>
+    <td><%= link_to 'Destroy', addinfo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Addinfo', new_addinfo_path %>

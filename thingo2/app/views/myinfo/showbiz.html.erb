@@ -1,0 +1,85 @@
+
+<div id="apDiv3">
+	
+<h3>ABOUT US</h3>
+
+<div class="imageborder">
+<% if @user.bizspec.avatar_file_name.nil? %>
+
+<%= image_tag ("empty-logo.jpg") %>
+
+<% else %>
+
+<%= image_tag (@user.bizspec.avatar.url(:medium))   %>
+
+<% end %>
+
+</div>
+
+<p>
+<%= @user.bizspec.name %> 
+
+
+
+<%= form_for @bizspec, :html => { :multipart => true }  do |f| %>
+	  <% if @bizspec.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@bizspec.errors.count, "error") %> prohibited this bizspec from being saved:</h2>
+
+	      <ul>
+	      <% @bizspec.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  
+	   <%= f.file_field :avatar %>
+	  <div class="actions">
+
+	    <%= f.submit %>
+	  </div>
+	<% end %>
+</p>
+
+<br>
+Your personal profile completion:
+<div class="progress-container">  
+   <span id="progress_text"><%= @completed %>%</span>
+   <div id="progress_bar" style="width: <%= @completed %>%"></div>
+<div id="shadow"></div>
+ </div>
+
+<br>
+<br>
+</br>
+<br>
+
+You last signed in  
+<%= (Date.today - @user.last_sign_in_at.to_date).to_i %> days ago
+
+</div>
+
+<div id="apDiv2">
+
+<%= render 'infobizprofile'%>
+<div id="shadow2"></div>
+ <%= link_to("Edit information", edit_bizspec_path(@user), :remote => true) %>
+</div>
+
+
+<div id="editprofile">
+
+	<h1>Modify Your Information</h1>
+
+	<%= render 'bizspecs/form' %>
+     <a id="close_x" class="close sprited" href="#">close</a>
+
+</div>
+
+<div class="rightpanel">
+<%= render 'follow/follow'%>
+</div>
+
+

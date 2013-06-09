@@ -1,0 +1,28 @@
+<div id="apDiv3">
+	<br>
+	<h1>Define Attributes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Valu</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @parametres.each do |parametre| %>
+  <tr>
+    <td><%= parametre.name %></td>
+    <td><%= parametre.valu %></td>
+    <td><%= link_to 'Show', parametre %></td>
+    <td><%= link_to 'Edit', edit_parametre_path(parametre) %></td>
+    <td><%= link_to 'Destroy', parametre, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Parametre', new_parametre_path %>
+</div>

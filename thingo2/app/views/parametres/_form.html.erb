@@ -1,0 +1,14 @@
+<%= form_for @parametre do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :valu %><br />
+    <%= f.text_field :valu %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

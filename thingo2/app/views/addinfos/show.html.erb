@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Spec:</b>
+  <%= @addinfo.spec_id %>
+</p>
+
+<p>
+  <b>Addlabel:</b>
+  <%= @addinfo.addlabel %>
+</p>
+
+<p>
+  <b>Addvalue:</b>
+  <%= @addinfo.addvalue %>
+</p>
+
+
+<%= link_to 'Edit', edit_addinfo_path(@addinfo) %> |
+<%= link_to 'Back', addinfos_path %>

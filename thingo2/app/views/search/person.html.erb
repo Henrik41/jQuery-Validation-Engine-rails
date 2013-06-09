@@ -1,0 +1,8 @@
+
+<% for obj in @usersa %>
+
+    <%= obj.name %> 
+     <%= image_tag obj.avatar.url(:thumb) %> <br>
+--------------------------------
+<br>
+<% end %>

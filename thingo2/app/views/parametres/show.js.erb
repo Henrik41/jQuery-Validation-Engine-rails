@@ -1,0 +1,9 @@
+$('addparam').click(function() {
+    $('#editprofile').lightbox_me({
+        centered: true, 
+        onLoad: function() { 
+            $('#editprofile').find('input:first').focus()
+            }
+        });
+    return false;
+});

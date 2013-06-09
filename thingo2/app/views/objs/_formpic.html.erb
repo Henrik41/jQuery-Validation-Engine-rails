@@ -1,0 +1,11 @@
+<%= form_for @obj.albums.new, :html => { :multipart => true }  do |f| %>
+
+
+
+
+<%= f.file_field :avatar %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
