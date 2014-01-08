@@ -11,6 +11,14 @@
                     "alertTextCheckboxe": "* This checkbox is required",
                     "alertTextDateRange": "* Both date range fields are required"
                 },
+					"ajaxUserCall": {
+					    "url": "/start/uservalide",
+					    "extraData": "",
+					    "extraDataDynamic": ['#user_email'],
+					    "alertText": "* This user is already taken",
+					    "alertTextOk": "All good!",
+					    "alertTextLoad": "* Validating, please wait"
+					},
                 "requiredInFunction": { 
                     "func": function(field, rules, i, options){
                         return (field.val() == "test") ? true : false;
