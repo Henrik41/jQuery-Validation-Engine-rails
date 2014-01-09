@@ -123,7 +123,7 @@
 					    "url": "/start/uservalide",
 					    "extraData": "",
 					    "extraDataDynamic": ['#user_email'],
-					    "alertText": "* This user is already taken",
+					    "alertText": "* This user doesn't exist. Please register",
 					    "alertTextOk": "All good!",
 					    "alertTextLoad": "* Validating, please wait"
 					},
