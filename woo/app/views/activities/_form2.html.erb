@@ -1,0 +1,141 @@
+<div class="form form-profile">
+	                                 	  <div class="row-item clearfix">
+	                                        <label class="lbl" for="txt_name1">Name:</label>
+	                                        <div class="val">
+
+
+	<%= f.text_field :title, :class => 'txt', :id => 'txt_name1', :placeholder => 'Enter an activity title' %>
+	                                            <p class="rs description-input">Give a descriptive name to your Activity</p>
+	                                        </div>
+	                                    </div>
+	                                    <div class="row-item clearfix">
+	                                        <label class="lbl" for="txt_location">Location:</label>
+	                                        <div class="val">
+
+											<% unless !@activity.errors.has_key?(:location) %>
+											            <span class="help-inline"><%= @activity.errors[:location].join(", ")%></span>  
+									<%end%>	
+
+	<%= f.text_field :location, :class => 'txt', :id => 'txt_location', :placeholder => 'Where is your event?' %>                                       
+	                                        </div>
+	                                    </div>
+
+	                                  <div class="row-item clearfix">
+	                                        <label class="lbl" for="Datepicker">Starting Day:</label>
+	                                        <div class="val">
+
+	<%= f.text_field :start_date, :class => 'txt datepicker', :id => 'txt', :placeholder => 'Give us a date' %>     											</br>
+
+	                                            <p class="rs description-input">What date is your event?</p>
+	                                        </div>
+
+	</div>
+
+
+	                                 <div class="row-item clearfix">
+	                                        <label class="lbl">Starting Time:</label>
+	                                        <div class="val">
+	<div class='txt2'>
+		    <%= f.text_field :start_time, :name => 's1Time1' %>
+	                                          <br/>
+						</div>
+
+
+	                                            <p class="rs description-input">What time is your event?</p>
+	                                        </div>
+
+	</div>
+
+
+
+
+	                                  <div class="row-item clearfix">
+	                                        <label class="lbl" for="Datepicker">Ending Day:</label>
+	                                        <div class="val">
+	                                           <%= f.text_field :end_date, :class => 'txt datepicker' %>		</br>
+
+
+
+	                                            <p class="rs description-input">What date does your event ends?</p>
+	                                        </div>
+
+	</div>
+
+
+	                                 <div class="row-item clearfix">
+	                                        <label class="lbl">Ending Time:</label>
+	                                        <div class="val">
+	<div class='txt2'>
+	                                               <%= f.text_field :end_time, :name => 's1Time2' %> <br/>
+						</div>
+
+
+	                                            <p class="rs description-input">When does your event end?</p>
+	                                        </div>
+
+	</div>
+
+
+
+
+	                  <div class="row-item clearfix">
+	                                        <label class="lbl" for="txt_bio">About My Activity</label>
+
+	                                        <div class="val">
+
+
+	<%= f.text_area :about, :class => 'txt fill-width', :id => 'txt_bio' %>
+	                                            <p class="rs description-input">We suggest a short description. Talk about what is fun about this activity and why people should join.</p>
+	                                        </div>
+	                                    </div>
+
+	<div class="row-item clearfix">
+	    <label class="lbl" for="txt_name1">Number of participants:</label>
+	    <div class="val">
+	       <%= f.number_field :numpart, :class =>'txt', :id => 'txt-name1' %>
+	        <p class="rs description-input">Tell us how many people should attend your activity</p>
+	</div>	</div>
+	                                    <div class="row-item clearfix">
+	                                        <label class="lbl" for="txt_name2">Your Website URL:</label>
+	                                        <div class="val">
+
+	                                            <%= f.text_field :website, :class => 'txt', :id => 'txt_name2', :value => 'www.'	 %>
+	                                            <p class="rs description-input">You can enter a link to your website.</p>
+	                                        </div>
+	                                    </div>
+	<div class="row-item clearfix">
+											Is this a recurrent event?	&nbsp;&nbsp;
+										               <%= f.select :recurrent, [['No',false], ['Yes',true]], :class =>"txt" %>
+
+													</div>
+													<div class="row-item clearfix">
+																								What is the price?	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+																								  <%= f.select :recurrent, [['Free'], ['0-10$'], ['11$-20$'], ['21$-30$']], :class =>"txt" %>
+
+																										</div>
+	                                    <div class="row-item clearfix">
+	                                        <label class="lbl" for="txt_web">Interests:</label>
+	                                        <div class="val">
+	                                        <p class="rs description-input">add related interest</p>
+
+						<%= f.fields_for :interests do |f| %>
+
+
+							<%= f.text_field :interest, :class => "txt txt-website", :id => "txt_web" %>
+
+
+
+									<%= f.link_to_remove "Remove" %>
+						<% end %>
+
+									<%= f.link_to_add "Add Interest", :interests, :class => "btn btn-white" %>
+
+
+	                                        </div>
+	                                    </div>
+	                                    <p class="wrap-btn-submit rs ta-r">
+	                                           <%= f.submit 'Save all settings', :class =>'btn btn-red btn-submit-all' %>
+	           <% end %>                         </p>
+
+</div>

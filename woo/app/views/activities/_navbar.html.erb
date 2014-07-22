@@ -1,0 +1,18 @@
+<div class="grid_12 top-info">
+	<div id="menu_wrapper" >
+		<nav>
+            <ul id="appleNav">
+                <li ><a href="/start/dashboard" title="logo"><%= image_tag 'logowoo2.png' %></a></li>
+                <li class ="<%= controller.class == StartController  and controller.action_name == 'dashboard' ? 'current' : '' %>"><a href="/start/dashboard/1" title="Home">Home</a></li>
+                <li class ="<%= controller.class == ActivitiesController and controller.action_name == 'myactivities' ? 'current' : '' %>"><a href="/activities/myactivities" title="My activities">My Activities</a></li>
+                <li class ="<%= controller.class == ActivitiesController and controller.action_name == 'new' ? 'current' : '' %>"><a href="/activities/new" title="Add Activity">Add An Activity</a></li>
+                <li class ="<%= controller.class == FollowController and controller.action_name == 'ifollow' ? 'current' : '' %>"><a href="/follow/ifollow" title="Favorites">Favorites</a></li>
+
+          <li class ="<%= controller.class == PeopleController and controller.action_name == 'index' ? 'current' : '' %>"><a href="/search/activitysearch" title="Search">Advanced Search</a></li>
+                <li><a href="/people/index" title="People">People</a></li>
+
+
+            </ul>
+        </nav>
+</div>
+</div>

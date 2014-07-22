@@ -1,0 +1,181 @@
+<% if user_signed_in? %>
+
+<header id="header">
+  <div class="wrap-top-menu">
+<i id="sys_btn_toggle_search" class="icon iBtnRed make-right"></i>
+</div>
+     <div class="container_12 clearfix">
+        <div class="grid_12 header-content">
+            <div id="sys_header_right" class="header-right">
+  				<div class="account-panel">
+					<div class="nav-title">
+						
+<div class="red-tooltip">		
+		<% if @messages_count >= 1 %>
+<span class="pink blink2">  <%= @messages_count %> </span>
+<% else %>		
+<% end %>
+
+				<a  href="/conversation/myinbox" data-toggle="tooltip" data-original-title="Check your Woobox">&nbsp;<%= image_tag "/assets/icon1c.png"  %></a><span class="sep"></span>
+				                        <a href="/profile/edit" data-toggle="tooltip" data-original-title="Check your profile"><%= image_tag '/assets/icon2c.png' %></a><span class="sep"></span>
+				                        <a href="/setting/index" data-toggle="tooltip" data-original-title="Settings" ><%= image_tag '/assets/icon3c.png'%></a><span class="sep"></span>
+										<%= link_to (image_tag '/assets/icon4c.png'), destroy_user_session_path,  "data-toggle"=>"tooltip", "data-original-title"=>"I'm out!", :method => :delete %>
+			
+				                       <span class="sep"></span>
+										
+											<% if current_user.avatar? %>
+				  						 <a href="/profile/edit"> <%= image_tag current_user.avatar.url(:supermini) %> </a>
+				<% else%>
+				<a href='/profile/edit'> <%= image_tag '/assets/ex/blankmini.jpg' %> </a>
+				<% end %>
+				</div>
+	</div>			                    </div>
+
+           <div class="form-search3">
+          	<%=	form_tag( {:action=> 'searchactivities', :controller =>'search'}, :id =>'sys_txt_keyword', :class => 'txt-keyword')  do %>
+			<%= text_field_tag :search, '', :size => '16', :placeholder => 'Search Activities' %> 
+
+		
+
+						           <button class="btn-search" type="reset"><i class="icon iMagnifier"></i></button>
+		                            <button class="btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
+
+					<% end %>
+           </div>
+            </div>
+
+            <div class="header-left">
+                <h1 id="logo">
+                  <a href="/start/dashboard"><%= image_tag 'logo.png' %> </a>
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</header><!--end: #header -->
+
+
+
+<% else %>
+
+    <header id="header">
+	  <div class="wrap-top-menu">
+   <i id="sys_btn_toggle_search" class="icon iBtnRed make-right"></i>
+</div>
+         <div class="container_12 clearfix">
+            <div class="grid_12 header-content">
+                <div id="sys_header_right" class="header-right">
+                    <div class="account-panel">
+                        <a href="#" class="btn btn-red sys_show_popup_login">Promote Your Activity</a>
+                        <a href="#" class="btn btn-black sys_show_popup_login">Login</a>
+                    </div>
+<div class="form-search">
+	<div class="form">
+
+		<%=	form_tag( {:action=> 'searchactivities', :controller =>'/search'}, :id =>'sys_txt_keyword', :class => 'txt-keyword')  do %>
+		<%= text_field_tag :search, '', :size => '16', :placeholder => 'Search Activities' %> 
+	
+
+
+		
+					           <button class="btn-search" type="reset"><i class="icon iMagnifier"></i></button>
+	                            <button class="btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
+					
+				<% end %>
+					
+					</div>
+                   
+                    </div>
+                </div>
+             	<div class="header-left">
+	                <h1 id="logo">
+	                  <a href="/"><%= image_tag 'logo.png' %> </a>
+	                </h1>
+
+	            </div>
+
+                    <div class="main-nav clearfix">
+                        <div class="nav-item">
+                            <a href="#" class="nav-title2">Discover</a>
+                            <p class="rs nav-description">Great Activities</p>
+                        </div>
+                        <span class="sep"></span>
+                        <div class="nav-item">
+								<%=  link_to_modal "Promote", "#demo-form2", :class=>"nav-title" %>
+
+		
+			
+                            
+                            <p class="rs nav-description">Your Activity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header><!--end: #header -->
+
+<% end %>
+
+
+
+<script type="text/javascript">
+$(function() {
+	$('#search').autocomplete({
+		source: '/follow/list',
+		
+		 focus: function(event, ui){
+		   $('#search').val(ui.item.title);
+		   return false;
+		 },
+		 select: function(event, ui){
+		 $('#search').val(ui.item.title);
+		 $('#sys_txt_keyword').submit();
+		 }
+		})
+
+		.data("uiAutocomplete")._renderItem = function(ul,item){
+		   return $("<li></li>")
+		  .data("item.uiAutocomplete",item)
+		  .append("<a>"+"<div class='list_item_container_holder'>"+"<div class='image_holder'>"+"<img src='" + item.avatar_url +"'>" +"</div>" + "<div class='label'>" + item.title.substr(0,20) + "</div>" + "<div class='description_holder'>" + item.about.substr(0,70) + "..."+ "</div>"+"</div>" +"</a>")
+  .appendTo(ul);
+		  };
+});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+	    var x;
+	        setInterval(function() {
+	                if(x == 0) {
+	                    $('.blink2').removeAttr('style').css('display','inline');
+	                    x = 1;
+	                } else  {
+	                    if(x = 1) {
+	                        $('.blink2').css('display','inline');
+	                        x = 0;
+	                    }
+	                }
+	        }, 500);
+	});
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".red-tooltip a").tooltip();   
+	});
+	</script>
+	
+<script type="text/javascript">
+	$(function(){
+		// Init Plugin
+
+		$(".nav-title2").videopopup({
+			'videoid' : '70069963',
+			'videoplayer' : 'vimeo', //options - youtube or vimeo
+			'autoplay' : 'true',// options - true or false
+			'width' : '900',
+			'height' : '510'
+		});
+	});
+</script>

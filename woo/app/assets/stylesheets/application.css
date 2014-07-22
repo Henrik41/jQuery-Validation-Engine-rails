@@ -1,0 +1,33 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrappop
+ *= require jquery-ui
+ *= require jquery.ui.theme
+ *= require datepicker
+ *= require jquery-ui-datepicker
+ *= require reveal
+ *= require jquery.counter-analog2
+ *= require jquery.counter-analog
+ *= require normalize
+ *= require videopopup
+ *= require jquery.ui.all
+ *= require jquery.modal
+ *= require jquery.ui.autocomplete
+ *= require image-picker
+ *= require jquery.fancybox
+ *= require validationEngine.jquery
+ *= require gritter
+ *= require_tree ./css/
+ *= require style
+ *= require_tree .
+ *
+ *= require jquery-ui/start
+ */
