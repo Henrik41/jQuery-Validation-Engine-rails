@@ -41,7 +41,7 @@ gem "omnicontacts"
 gem "localtunnel"
 gem 'carrierwave'
 gem 'mini_magick' 
-gem 'mailboxer'
+gem 'mailboxer', '~> 0.11.0'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "acts_as_follower", '~> 0.1.1'
@@ -52,6 +52,8 @@ gem 'jQuery-Validation-Engine-rails', :git => 'git@github.com:Henrik41/jQuery-Va
 gem 'daemons'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+gem "friendly_id", "~> 4.0.10"
+gem 'sitemap_generator'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

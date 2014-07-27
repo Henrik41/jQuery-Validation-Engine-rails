@@ -202,7 +202,8 @@
             </div><!--end: .project-runtime -->
             <div class="project-author">
                 <div class="box-gray">
-                    <h3 class="title-box">Want to Participate</h3>
+                    <h3 class="title-box">Participation Request</h3>
+
 
 <div id='foo'>
 <% @userparticipating.each do |f| %>
@@ -236,7 +237,9 @@
 	<%end%>
 	                 
 </div>
-                   </div>
+ 
+
+                  </div>
 
                </div>
 
@@ -258,6 +261,28 @@
 
                 </div>
             </div><!--end: .project-author -->
+
+
+			            <div class="project-author">
+			                <div class="box-gray">
+			                    <h3 class="title-box">Invite People you Follow</h3>
+<div class="media">	
+	</br>
+	  <%= form_tag({:controller => 'activities', :action => 'invites', :id => @activity.id }) do %>
+
+	<%= button_tag(type: 'submit', class: "btn btn-blue4 btn-buck-project") do %>
+	<span class="lbl">SELECT YOUR INVITES</span>
+	<%end%> 
+
+	<%end%>        	 
+
+	 </div>
+
+
+			                </div>
+			            </div><!--end: .project-author -->
+			
+			
             <div class="clear clear-2col"></div>
 <%= render 'myvisits' %>
         </div><!--end: .sidebar -->
@@ -287,5 +312,47 @@ $(document).ready(function() {
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=516849445076378&version=v2.0";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	
+	
+	<script>
+	//set global constants & variable
+	var full_opacity = 1;
+	var faded_opacity = 0.5;
+	var fade_speed = 'fast';                
+	var objid;
+
+	$('input[name="favorite_contestant"]').each(function() {
+
+	     //we need the image associated with this checkbox
+	     //i am assuming the associated image tag has an ID of "img_" and whatever the value of the associated checkbox is
+	     //e.g., img_miss_alabama_usa is the id for the image associated with the checkbox that has the checked value miss_alabama_usa
+	     objid = "#img_" + $(this).val();
+
+	     if($(this).prop('checked')) {
+	          //full opacity for prechecked images
+	          $(objid).css('opacity', full_opacity);
+	     }
+	     else {
+	          //partial opacity for unchecked images
+	          $(objid).css('opacity', faded_opacity);
+	     }
+	});
+
+	$('input[name="favorite_contestant"]').change(function() {
+	     //same method as above for associating a checkbox and its image
+	     objid = "#img_" + $(this).val();
+	     if($(this).prop('checked')) {
+	          //full opacity for image if associated checkbox is checked
+	          $(objid).fadeTo(fade_speed, full_opacity);
+	     }
+	     else {
+	          //partial opacity for image if associated checkbox is unchecked
+	          $(objid).fadeTo(fade_speed, faded_opacity);
+	     }
+	});
+
+	</script>		
+
 	
 	

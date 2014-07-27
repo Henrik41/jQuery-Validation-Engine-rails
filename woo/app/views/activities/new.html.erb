@@ -171,7 +171,7 @@
 									                                        <label class="lbl" for="Datepicker">Ending Day:</label>
 									                                        <div class="val">
 										
-									                                           <%= f.text_field :end_date, :class => 'validate[required,future[' + Date.today.to_s + '],funcCall[geThan]] text-input txt datepicker' %>		</br>
+									                                           <%= f.text_field :end_date, :class => 'validate[required,future[' + Date.today.to_s + '],funcCallRequired[geThan]] text-input txt datepicker' %>		</br>
 
 
 
@@ -185,7 +185,7 @@
 									                                        <label class="lbl">Ending Time:</label>
 									                                        <div class="val">
 									<div class='txt2'>
-									                                               <%= f.text_field :end_time, :name => 's1Time2', :class =>'validate[required,funcCall[than]] txt',  :id => 'txttime2' %> <br/>
+									                                               <%= f.text_field :end_time, :name => 's1Time2', :class =>'validate[required,funcCallRequired[than]] txt',  :id => 'txttime2' %> <br/>
 														</div>
 
 

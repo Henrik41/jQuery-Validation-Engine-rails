@@ -16,7 +16,13 @@ Woo::Application.routes.draw do
   
   get "general/activity/:id", to: 'general#activity'
   
-
+  post 'general/invite/:id', to: 'general#invite'
+  
+  post "activities/invites/:id", to: 'activities#invites'
+  
+  get 'general/invite'
+  
+  get "info/my_activity/:id", to: 'info#my_activity'
 
 #general
 
