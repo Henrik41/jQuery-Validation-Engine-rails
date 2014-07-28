@@ -1,6 +1,6 @@
 /*
  * Inline Form Validation Engine 2.6.2, jQuery plugin
- * this is a change of code test 2 HK
+ * this is a change of code test 3 HK
  * Copyright(c) 2010, Cedric Dugas
  * http://www.position-absolute.com
  *
