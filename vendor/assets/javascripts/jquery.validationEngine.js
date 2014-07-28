@@ -1,6 +1,6 @@
 /*
  * Inline Form Validation Engine 2.6.2, jQuery plugin
- * this is a change of code test 3 HK
+ *
  * Copyright(c) 2010, Cedric Dugas
  * http://www.position-absolute.com
  *
@@ -667,7 +667,6 @@
 							required = true;
 						}
 						break;
-						
 					case "funcCallRequired":
 						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._funcCallRequired);
 						if (errorMsg !== undefined) {
