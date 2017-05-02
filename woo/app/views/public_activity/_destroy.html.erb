@@ -1,0 +1,12 @@
+<div class="section_2"> <%= image_tag 'logowoo2.png' %> </div>
+<div class="section_3">
+	<div class="section_3_1">
+created	<%= distance_of_time_in_words(@mytime, activity.trackable.deleted_at) %> ago 
+	</div>
+<%= link_to activity.owner.name, activity.owner %>
+just deleted an activity 
+
+</div>
+<div class="section_4">
+<%= image_tag (activity.trackable.avatar.url(:supermini))%>  
+</div>

@@ -1,0 +1,97 @@
+
+<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+         <div class="clear"></div>
+
+</br>
+
+<div class="layout-2cols">
+        <div class="content grid_8">
+       <div class="wrapper-box box-list-comment">	
+			        <h2 class="rs project-title">Here is your previous conversations</h2>
+	</br>
+
+
+
+	 <div class="box-white">  
+	<% @conversation.each do |x| %>		
+	<% if User.find(x.sender_id) == current_user %>
+	
+	 <div class="media comment-item lv2">
+	<% else %>		
+    <div class="media comment-item">
+	<% end %>
+	<div class = "thumb-left">
+	    <%= image_tag User.find(x.sender_id).avatar.url(:mini) %>
+	</div>
+        <div class="media-body">
+            <h4 class="rs comment-author">
+                <a href="/profile/<%=x.sender_id%>" class="be-fc-orange fw-b"><%= User.find(x.sender_id).username %></a>
+                <span class="fc-gray">say:</span>
+            </h4>
+            <p class="rs comment-content"> 	<%= sanitize(simple_format (x.body)) %> </p>
+            <p class="rs time-post">
+                	written <%= "#{time_ago_in_words(x.created_at)} ago " %>
+                <a class="btn-reply fc-gray be-fc-orange" href="#">
+                    <% if User.find(x.sender_id) == current_user %>
+
+				
+					<% else %>		
+						<i class="icon iReply"></i>
+	                    Reply
+					<% end %>
+				
+                </a>
+            </p>
+        </div>
+    </div><!--end: .comment-item -->
+
+	
+    <% end %>
+
+</br>
+<%= paginate @conversation %>	
+
+ </div>			
+	
+	</br>	 	
+				
+
+			<label class="lbl" for="txt_bio">Reply</label>
+		<%= form_for :user,  :url => {:controller => 'conversation', :action => 'reply'} do |f| %>
+		<div class="val">
+			<%= f.text_area :body,:class => "txt fill-width", :id => "txt_bio",  :style => "width:610px;", :rows => "6"  %>
+		 </div>
+		</br>
+			<%= f.hidden_field :conversation_id, :value => @conversation2.id %>
+		  <%= f.submit 'Send Message', :class => "btn btn-blue" %>
+		<% end %>
+
+		
+ 
+          
+</div>
+
+       </div><!--end: .content -->
+
+<%= render "sidebar" %>    <div class="clear"></div>
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+<%= render 'footer/footer' %>
+
+
+</div>
+
+

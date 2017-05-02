@@ -1,0 +1,33 @@
+<%= form_for(@dare) do |f| %>
+  <% if @dare.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dare.errors.count, "error") %> prohibited this dare from being saved:</h2>
+
+      <ul>
+      <% @dare.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :question %><br />
+    <%= f.text_field :question %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %><br />
+    <%= f.text_field :answer %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :priv %><br />
+    <%= f.check_box :priv %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

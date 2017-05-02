@@ -1,0 +1,66 @@
+
+
+<div class="bubble-list">
+			<div class="bubble clearfix">
+<%= link_to(image_tag(User.find(message.user_id).avatar.url(:supermini)), :controller => 'profile', :action => 'show', :id => message.user_id) %>  
+<div class="bubble-content"> 
+					<div class="point"></div>
+					
+					<p><%= User.find(message.user_id).username %><%= Time.now.strftime("%I:%M%p") %> (EDT) from: <%= User.find(message.user_id).location %>
+			<% if User.find(message.user_id).id == current_user.id %>
+			<% else %>
+						<div class="goright">	<%=  link_to_modal "Reply", "#demo-form", :class=>"btn btn-blue" %> <%= link_to "Profile", {:controller => 'profile', :action => 'show', :id => message.user_id.to_i}, :class => "btn btn-red"%></div>
+						
+
+												<div id="demo-form" class="demo-description" style="display: none; ">
+												  <p>
+
+												<b>	 Write me an Email</b>:
+													    <br />
+
+
+
+
+
+														<div class="theform">
+																						<%= form_tag({:controller => 'conversation', :action => 'sendmail', :id => message.user_id}, :remote => true) do %>
+																		<%= text_area_tag :body, nil, :cols => '50', :rows => '10' %>			
+
+																						<%= button_tag(type: 'submit', id: "search") do %>
+
+
+										<span class="btn btn-green">Send it</span> 
+																						<% end%> 
+																						<% end%>
+										</div>
+
+
+
+
+												  </p>
+												</div>
+
+
+						
+			<% end %>
+	</p>
+					<p class="bbtext"><%= message.shout %></p>
+			
+					</div>
+		</div>
+</div>			
+						
+	<script>
+	var down = false;
+	document.onkeydown = function () {
+	    if(down) return;
+	    down = true;
+
+	    // your magic code here
+	};
+
+	document.onkeyup = function () {
+	    down = false;
+	};
+	</script>				
+

@@ -1,0 +1,12 @@
+<% publish_to '/notif/index' do %>
+var oldscrollHeight = $("#chatbox").prop("scrollHeight") - 20; //Scroll height before the request
+
+$("#chatbox").append("<%= j render partial: 'notif', locals: {message: @message} %>");
+ var newscrollHeight = $("#chatbox").prop("scrollHeight") - 20; //Scroll height after the request
+ if(newscrollHeight > oldscrollHeight){
+                $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+            };
+
+<% end %>
+
+$("#new_notif")[0].reset();

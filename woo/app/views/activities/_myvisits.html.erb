@@ -1,0 +1,47 @@
+            <div class="project-author">
+                <div class="box-gray">
+                    <h3 class="title-box">Woo's checking your profile</h3>
+<% if @myvisit.nil? %>
+
+Nobody checked your profile yet
+<% else %>
+
+	<% @myvisit.each do |u| %>
+                    <div class="media">   
+	<% if u.avatar.url(:mini) %>  
+	 <%= link_to (image_tag u.avatar.url(:mini), :width => '101', :height => '101', :class => 'onbottom'), {:controller => 'profile', :action =>'show', :id => u.id }, :class => "thumb-left2" %>
+	
+
+	<% else %>      	
+					         
+			  <%= image_tag ('/assets/ex/blankmini3.jpg'), :class => "thumb-left" %>		
+<% end %>
+
+                        <div class="media-body">
+
+
+                            <h4 class="rs "><a href='/profile/<%= u.id %>' class="be-fc-orange fw-b"><%= u.username %></a></h4>
+                            <h4 class="rs pb10"><a href='/profile/<%= u.id %>' class="be-fc-orange fw-b">From: <%= u.location %></a></h4>
+
+                            <a class="btn btn-red" href="/profile/<%= u.id %>">View Profile</a>
+</br>
+                        </div>
+
+                    </div>
+</br>
+	<% end%>
+		  <% end %>
+                    <div class="media">
+</br>
+                       	 
+		                        <span class="lbl"><%= link_to "View More Members", '/people/index', :class => 'btn btn-green btn-buck-project' %></span>
+
+
+
+                    </div>
+
+                </div>
+
+            </div><!--end: .project-author -->
+
+            <div class="clear clear-2col"></div>

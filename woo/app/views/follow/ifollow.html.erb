@@ -1,0 +1,93 @@
+
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+
+<div class="clear"></div>
+
+<div class="clear clear-2col"></div>
+
+
+   <div class="layout-2cols">
+	
+       <div class="content grid_12">
+           <div class="project-detail">
+	
+               <div class="project-tab-detail tabbable accordion">
+
+			<ul class="nav nav-tabs clearfix">
+			 	<li class="active"><a href="#">People I Follow</a></li>			
+			    <li><a href="#" class="be-fc-orange">Activity I Follow</a></li>
+		    	<li> <a href="#" class="be-fc-orange">People Following Me</a></li>
+			</ul>
+						
+			
+		 		<div class="tab-content"> 
+			 <div>
+			
+			    <h3 class="rs alternate-tab accordion-label">People I follow</h3>
+			    <div class="tab-pane accordion-content active">
+			
+		
+					<div class="grid_12">
+						<div class="content-info-short clearfix">
+							<h2>People I follow</h2>
+							<% @userfollowing.each do |f| %>
+
+							<%= render :partial =>'/follow/grid', :locals => {:f => f} %>
+
+							<% end %>
+						 </div> <!--content-info-short clearfix -->
+					</div><!--grid_12-->
+				</div>
+				</div>
+ 
+
+	   		
+	
+			     <h3 class="rs alternate-tab accordion-label">Past Activities</h3>
+			     <div class="tab-pane accordion-content">
+	              
+								<div class="grid_12">
+									<div class="content-info-short clearfix">
+												<h2> Activities I follow </h2>
+													<% @activityfollowing.each do |f| %>
+
+													<%= render :partial =>'/follow/grid2', :locals => {:a => f} %>
+
+												
+													<% end %>
+									</div> <!--content-info-short clearfix--> 
+			 					</div><!--end: .tab-pane -->
+			     </div>
+			                      
+			
+			     <h3 class="rs alternate-tab accordion-label">People Following Me</h3>
+			     <div class="tab-pane accordion-content">
+	              
+								<div class="grid_12">
+									<div class="content-info-short clearfix">
+												<h2> People Following Me</h2>
+													<% @userfollowingme.each do |f| %>
+
+													<%= render :partial =>'/follow/grid', :locals => {:f => f} %>
+
+												
+													<% end %>
+									</div> <!--content-info-short clearfix--> 
+			 					</div><!--end: .tab-pane -->
+			     </div>
+			
+		    	 </div>
+				</div>
+
+  						
+				</div>
+			     
+			</div>
+		</div>
+	</div>			
+			
+</br>
+</br>
+   <div class="clear"></div>
+<%= render "footer/footer" %>

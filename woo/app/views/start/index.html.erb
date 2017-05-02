@@ -1,0 +1,381 @@
+
+	
+<%= render 'header/header' %>
+
+
+<img src="/assets/picrandom<%=rand(1..2)%>.jpg" height="100%" width="100%"  style="opacity:0.9;filter:alpha(opacity=50);position:relative;"></img>
+
+
+<div class="container_12">
+	<div class="grid_4">
+<div id="text-position">
+	 <p class="description_usagers" style="color:#fff;font-weight: bold;font-size: 200%">FIND ACTIVITIES NEAR YOU</p>
+</div>
+	
+<div id="text-position2">
+<ul>
+		<div class="box-white2b">
+	<li style="list-style-image: url('/assets/Check.png');"> 
+	<p class="description_one" style="font-weight: bold;font-size: 200%"> Browse our members activities</p>
+	</li>
+	
+	<li style="list-style-image: url('/assets/Check.png');">
+	<p class="description_one" style="font-weight: bold;font-size: 200%;"> Share your activity </p></li>
+	<li style="list-style-image: url('/assets/Check.png');"><p class="description_one" style="font-weight: bold;font-size: 200%"> Go out and make friends </p></li>
+		</div>
+
+	</ul>
+</div>	
+	
+</div>
+
+
+		<div class="grid_8">	
+<div id="box-sign2">
+  	<div class="form login-form">
+
+		<%= form_for(resource, :html => {:id => "form_id"}, :as => resource_name, :url => registration_path(resource_name))  do |f| %>
+		  <%= devise_error_messages! %>
+
+	  
+	        <div class="box-white2x">
+	            <h4 class="rs title-box">
+		
+					       <div class="ribbon-wrapper-green"><div class="ribbon-green">FREE!</div></div>
+	
+			<%= link_to (image_tag '/assets/signup_fb.png'), user_omniauth_authorize_path(:facebook)  %> 
+			
+	     <h2> Register and Have Fun! </h2>
+	            <div class="form-action">
+		
+	                <label for="txt_name">
+		 <%= f.text_field :username,  :class => "span2 validate[required,minSize[4],maxSize[20]] text-input txt fill-width",:id => "txt_name",  :placeholder => "User name" %>
+
+	                </label>
+	               
+	                    <div class="col">
+	                        <label for="txt_email">
+
+							  <%= f.email_field :email, :class => "span2 validate[required,custom[email]] text-input txt fill-width", :id => "txt_email", :placeholder => "E-mail" %>
+
+	                        </label>
+	                  
+							<label for="txt_re_email"> I am a:
+	                          	<%= f.radio_button :sex, "Male", :class => "span2 validate[required]"%> <%= image_tag '/assets/male.png', :height => 20 %>        
+								<%= f.radio_button :sex, "Female" %> <%= image_tag '/assets/female.png', :height => 10 %>        
+	                        </label>
+</br>
+	<%=  f.hidden_field :location, :value => @loc  %>
+	<%= f.hidden_field :nomail, :value => 1 %>
+	<%= f.hidden_field :followme, :value => 1 %>
+	<%= f.hidden_field :userfollowme, :value => 1 %>
+	<%= f.hidden_field :acceptme, :value => 1 %>
+	<%= f.hidden_field :partime, :value => 1 %>
+	<%= f.hidden_field :alertwoo, :value => 1 %>
+	
+		<%= f.hidden_field :nomailreg, :value => 1 %>
+
+
+	                    </div>
+
+	                    <div class="col">
+
+	                        <label for="txt_password">
+
+
+
+							  <%= f.password_field :password,  :class => "span2 validate[required] text-input txt fill-width",  :id => "txt_password", :placeholder => "Enter password" %>
+
+	                        </label>
+
+					
+	                    </div>
+	              
+	                <p class="rs pb10">By signing up, you agree to our <a href="#" class="fc-orange">terms of use</a> and <a href="#" class="fc-orange">privacy policy</a>.</p>
+	               
+<p>
+	 <%= f.submit "Sign up", :class => "btn btn-red12 btn-submit"  %> 
+	</p>
+	  </div> 
+	               
+	            </div>
+	        </div>
+	<% end %>
+	</div>
+
+	
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    $("#form_id").validationEngine();
+	});
+	</script>
+
+</div>
+</div>
+ 	</div>
+
+<div class="clear"></div>
+</br>
+</br>
+<div class="container_12">
+	<div class="grid_4">			
+			<%= image_tag '/assets/wooipad.png' %>
+		
+	</div>
+		<div class="grid_1"></div>
+	<div class="grid_7" style="float:right;">
+		</br>
+		</br>
+			<h1> Browse Members Activities Near you </h1>
+			<ul>
+				<li style="list-style-image: url('/assets/Check.png');"> <h3> Woomatch is all about connecting people </h3> </li>
+				<li style="list-style-image: url('/assets/Check.png');"> <h3> Make Friends and share your interests </h3> </li>
+				<li style="list-style-image: url('/assets/Check.png');"> <h3> Meet real people with similar interests in real life </h3> </li>
+			</ul>
+	</div>
+	
+
+</div>
+<div class="clear"></div>
+<div class="container_12">
+	<div class="grid_7">
+		
+		</br>
+		</br>
+			<h1> Post Your Activity and Interests </h1>
+			<ul>
+				<li style="list-style-image: url('/assets/Check.png');"> <h3> Connect with people with similar interests </h3> </li>
+				<li style="list-style-image: url('/assets/Check.png');"> <h3> Invite members to join your activity and follow you </h3> </li>
+				<li style="list-style-image: url('/assets/Check.png');"> <h3> Find Friend for Sports, Restaurants, travels and lots more.  </h3> </li>
+			</ul>
+			
+		
+		
+	</div>
+		<div class="grid_1"></div>
+	<div class="grid_4" style="float:left;">
+			</br>
+			</br>
+		<div class="nav-title2">	<%= image_tag '/assets/video.png' %></div>
+	</div>
+	
+
+</div>
+
+
+
+<div class="clear"></div>
+</br>
+</br>
+<div class="home-popular-project">
+<div class="container_12">
+
+<div class="grid_8 wrap-title">
+	
+     </br>           <h2 class="common-title">Popular in <div id= "location_main" style = "display:inline;"><%= @loc %> </div><div id="location_change" style = "display:inline;"></div>
+	<!-- Time: <%= @timenowuser %> --> </h2>
+	
+	</div>
+<div class="grid_4 wrap-title">	
+		 <a class="be-fc-orange" href="category.html"> <h3>Recent Registered Activities: &nbsp;&nbsp;&nbsp; <%= render 'start/counter' %></a></h3>
+
+</div>		
+</div>
+
+<div class="container_12">
+
+<div class="grid_12 wrap-title">
+	
+    <div class="form-search2">
+	<div class="form2">
+		
+
+
+
+
+<%= form_tag({:controller => 'search', :action => 'searchbycity'}, :remote => true) do %>
+  <%= text_field_tag "q",nil, :class => 'address-picker-input', :placeholder => 'Change my city' %>
+
+
+<script type="text/javascript">
+    AddressPickerRails.Pickers.applyOnReady();
+</script>
+
+
+     <%= submit_tag 'Search',  :class=>"btn btn-red" %>
+
+
+
+           
+            <button class="btn-search" type="reset"><i class="icon iMagnifier"></i></button>
+            <button class="btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
+ <% end %> 
+
+
+</br>
+</div>
+
+</div>
+</div>
+               
+            </div>
+
+<div class="clear"></div>
+			
+
+<div class="lst-popular-project clearfix">
+
+	<div id ="thepartial">
+		
+<% @activity.each do |a| %>
+ <%= render :partial => "grid", :locals => {:a => a} %> 
+<% end %>
+
+
+	</div>
+<div id="select_button"></div>
+	
+<center> <a  class="btn btn-green sys_show_popup_login">View More Things To Do In Your Area</a> </center>
+</br>
+
+</div>
+
+	
+
+</div> <!-- container_12-->
+</div><!--end: .home-popular-project -->
+    <div class="home-discover-friends">
+        <div class="container_12">
+            <div class="row-friends">
+                <a class="thumb-avatar" href="#">	<%= (image_tag "ex/th-119x119-1.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-2.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-3.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-4.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-5.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-6.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-7.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-8.jpg") %>  </a>
+                <div class="clear"></div>
+            </div>
+            <div class="row-friends row-connect-fb">
+                <a class="thumb-avatar t-first" href="#"><%= (image_tag "ex/th-119x119-17.jpg") %>  </a>
+                <div class="connect-fb">
+                    <p class="rs description">Discover great activities with your friends!</p>
+                   
+<%= link_to "Connect With Facebook", user_omniauth_authorize_path(:facebook),  :class => 'btn btn-fb'  %>
+                </div>
+                <a class="thumb-avatar t-last" href="#"><%= (image_tag "ex/th-119x119-1.jpg") %>  </a>
+                <div class="clear"></div>
+            </div>
+            <div class="row-friends">
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-9.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-10.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-11.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-12.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-13.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-14.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-15.jpg") %>  </a>
+                <a class="thumb-avatar" href="#"><%= (image_tag "ex/th-119x119-16.jpg") %>  </a>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div><!--end: .home-discover-friends -->
+
+    <div class="additional-info-line">
+        <div class="container_12">
+            <div class="grid_9">
+                <h2 class="rs title">The best way to meet people and socialize is to go out and meet our members.</h2>
+                <p class="rs description">Get out and meet new exiting people now. Making new friends has never been that easy. Simply reply to the activity that interests you and go have fun. If you have an activity to promote, do it now.<strong> It's Free!</strong> </p>
+            </div>
+            <div class="grid_3 ta-r">
+                <a class="btn bigger btn-red" href="#">Learn more</a>
+            </div>
+            <div class="clear"></div>
+	     </div>
+	    </div><!--end: .additional-info-line -->
+	</div>	
+	
+<%= render 'footer/footer' %>
+
+	<div id="demo-form2" class="demo-description" style="display: none; z-index:9999;">		
+	<h2>	This is the text to promote your activity </h2>	
+	</div>
+
+<div class="popup-common" id="sys_popup_common">
+    <div class="overlay-bl-bg"></div>
+    <div class="container_12 pop-content">
+       
+<div class="grid_6">       
+            <div class="form login-form">
+	<%= render "devise/sessions/new" %> 
+           </div>            
+</div>        
+   			 <div class="grid_1 wrap-btn-close ta-r">
+		           <i class="icon iBigX closePopup"></i>
+		     </div>
+
+        <div class="clear"></div>
+    
+</div>
+</div>
+
+
+<script>
+	
+	$(window).load(function() {
+	  $('.flexslider').flexslider({
+	    animation: "slide",
+	    animationLoop: false,
+	    move: 1,
+	    itemWidth: 120,
+	    itemMargin: 10
+	
+	  
+	  });
+	});
+	
+</script>
+
+<script>
+$(document).ready(function() {
+	$('.standard').hover(
+		function(){
+			$(this).find('.caption').show();
+		},
+		function(){
+			$(this).find('.caption').hide();
+		}
+	);
+	$('.fade').hover(
+		function(){
+			$(this).find('.caption').fadeIn(250);
+		},
+		function(){
+			$(this).find('.caption').fadeOut(250);
+		}
+	);
+	$('.slide').hover(
+		function(){
+			$(this).find('.caption').slideDown(250);
+		},
+		function(){
+			$(this).find('.caption').slideUp(250);
+		}
+	);
+});
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		// Init Plugin
+
+		$(".nav-title2").videopopup({
+			'videoid' : '103572289',
+			'videoplayer' : 'vimeo', //options - youtube or vimeo
+			'autoplay' : 'true',// options - true or false
+			'width' : '900',
+			'height' : '510'
+		});
+	});
+</script>

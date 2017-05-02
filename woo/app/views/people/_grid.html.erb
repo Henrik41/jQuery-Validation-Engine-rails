@@ -1,0 +1,54 @@
+      
+  <div class="grid_3">
+            <div class="project-short sml-thumb">
+                <div class="top-project-info">
+                    <div class="content-info-short clearfix">
+
+                        <a href="#" class="big_box">
+       <% if a.avatar.url %> 
+
+<%= link_to (image_tag a.avatar.url(:grid)), {:controller => 'profile', :action => 'show', :id => a } %>
+
+
+
+
+					<% else %>
+					
+					
+					<%= image_tag '/assets/ex/peopleblank.jpg', :width => '192', :height => '135' %>
+					<% end %>
+                        </a>
+<% if a.online? %> 	<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop3' %><% end %>
+                        <div class="wrap-short-detail">
+                            <h3 class="rs acticle-title"><a class="be-fc-orange" href="project.html"><%= a.name.capitalize %></a></h3>
+                           
+                  
+                            <p class="rs project-location">
+                                <i class="icon iLocation"></i>
+<% if a.location %>
+                                <%= a.location[0..15] %>  &nbsp; &nbsp;&nbsp; <%= a.distance_from(current_user.location).round(1) %> &nbsp;miles
+<% end%>
+                            </p>
+                        </div>
+
+							
+						
+								<%=  link_to "Profile",  {:controller => 'profile', :action => 'show', :id => a.id }, :class=>"btn btn-blue" %>
+
+									
+
+
+
+
+							<% if current_user.following?(a) %>
+							<div class="btn btn-red"> <%= link_to "Unfollow", unfollow_profile_path(a.id) %> </div>
+							<% else %>		
+							<div class="btn btn-red"> <%= link_to "Follow", follow_profile_path(a.id) %> </div>
+							<% end %>
+					
+							</br>
+
+                    </div>
+                </div>
+         </div>
+        </div><!--end: .grid_3 > .project-short-->

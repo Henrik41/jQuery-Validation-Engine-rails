@@ -1,0 +1,65 @@
+
+
+        <div class="grid_3">
+            <div class="project-short sml-thumb">
+                <div class="top-project-info">
+                    <div class="content-info-short clearfix">
+
+            <a href="#" class="thumb-img">            
+	<% if f.avatar.url.present? %>
+                      <%= link_to image_tag(f.avatar.url(:grid)), {:controller => 'profile', :action => 'show', :id =>f.id } %>
+    <% else %>
+    					<%= link_to image_tag('ex/blankevent.jpg'), {:controller => 'profile', :action => 'show', :id =>f.id } %>
+     <% end %>
+                        </a>
+
+
+                        <div class="wrap-short-detail">
+                            <h3 class="rs acticle-title">
+
+	<a class="be-fc-orange"> <%= f.username.capitalize %> </a></h3>
+
+
+                            <p class="rs tiny-desc">Activities 
+	
+		<div class="miniactivity">
+<a class="sys_show_popup_login" >	
+	<% f.activities[0..4].each do |a| %>
+	
+
+	 <%= link_to image_tag(a.avatar.url(:supermini), :height =>'30', :width => '30'), :controller => 'general', :action =>"activity", :id => a.id %>
+
+	<% end %>
+		
+</a>
+       </div>             <p class="rs title-description"><div class="description_space">
+
+<% if f.about %>
+<%= link_to f.about.capitalize[0,90], :controller => 'profile', :action =>"show", :id => f.id %>...(more)
+<% else %>
+   No Description yet
+<% end %>
+</div></p>
+                            <p class="rs project-location">
+                                <i class="icon iLocation"></i>
+
+                                <%= f.location[0..20] %>  &nbsp; &nbsp;&nbsp;</br> 
+<% if f.distance_from(@loc).nil? %>
+N/A&nbsp;miles
+<% else %>
+<%= f.distance_from(@loc).round(1)%>&nbsp;miles
+<% end %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+<center>
+					<% if current_user.following?(f) %>
+					<div class="btn btn-red"> <%= link_to "Unfollow", unfollow_profile_path(f.id) %> </div>
+					<% else %>		
+					<div class="btn btn-red"> <%= link_to "Follow", follow_profile_path(f.id) %> </div>
+					<% end %>
+</center>
+</br>
+   </div>
+        </div><!--end: .grid_6 > .project-short-->

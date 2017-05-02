@@ -1,0 +1,90 @@
+		    <div class="box-marked-project project-short inside-tab">			
+		  <div class="top-project-info2">
+			
+		    <div class="content-info-short clearfix">
+   				<div id="totalw">
+				<div id="left-item">
+							
+		          <a href="/activity/<%= a.id %>" >
+	
+                <%= image_tag a.avatar.url(:grid) %> </a>    
+ </div> 
+
+	<div id="right-item">
+		
+		
+		<div id = "totalitem">
+			<div id="haut-item">
+				
+
+<div id="search_button">
+	<%= form_tag({:controller => 'general', :action => 'followdash', :id => @activities.id},  :remote => true) do %>
+		<%= submit_tag 'Woo! I Like It',  :class => "btn bigger btn-red" %>
+	<% end %>
+</div>	
+	 <span id="spinner"  style="display:none">
+	    <%= image_tag 'spinner-b.gif' %>
+	  </span>
+	
+		</div></br>
+<div id = "bas-item">
+   <a class="btn bigger  btn-blue" href="/activity/<%= a.id %>">Check it out</a> 
+
+
+ </div>         				
+		    </div>    
+		
+</div>
+
+		</div>
+	<div id= "rightfloating">
+		         <a href="/profile/<%= a.user_id %>" >
+
+                <%= image_tag (User.find(a.user_id)).avatar.url(:grid) %> </a>    
+
+		 </div>
+		
+
+		      </div><!-- end wrap-short-detail -->			
+		   </div><!--end: .top-project-info -->
+				
+		 <div class="bottom-project-info clearfix">
+
+		 	<div class="project-progress sys_circle_progress" data-percent="<%= a.visit.total_visits rescue 0 %>">
+		 			<div class="sys_holder_sector"></div>
+		 	</div>
+		 	<div class="group-fee clearfix">
+				<div class="fee-item">
+			<p class="rs lbl">REGISTERED</p>
+					 <span class="val"> <%= a.completion.round(0) %>% </span>
+					</div>
+					   <div class="sep"></div>
+		    	<div class="fee-item">
+		    <p class="rs lbl">PRICE</p>
+		    <span class="val"><%= a.price %></span>
+		    	</div>
+		        <div class="sep"></div>
+		        <div class="fee-item">
+		    <p class="rs lbl">LIKED</p>
+		    <span class="val"><%= a.followers_count %></span>
+		        </div>
+		        <div class="sep"></div>
+		        <div class="fee-item">
+		    <p class="rs lbl">TIME LEFT</p>
+		    <span class="val">
+			<% if a.enddate < @mytime %>
+														Ended
+														<% else %>
+
+				<%= distance_of_time_in_words(@mytime, a.ending) %>
+				<% end %></span>
+		        </div>
+		     </div><!-- end group-fee clearfix -->
+		                                        <div class="clear"></div>
+		  </div><!-- end bottom-project-info clearfix-->
+		 </div><!--end: .box-marked-project -->
+<script>
+$(".btn-red").click(function() {
+    $("#spinner, #search_button").toggle();
+});
+</script>

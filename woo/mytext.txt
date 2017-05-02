@@ -1,0 +1,279 @@
+1. start page     ------ done
+2. activity - edit ----- done
+3. activity - new  ----- done
+4. activity - view (activity.html)
+5. activity index - all (my activity)
+5.5 small activity partial ---
+
+
+
+6. my profile
+7. edit profile  -- done
+
+8.search activities
+9.search not logged
+
+10. 
+
+
+
+
+Some setup you must do manually if you haven't yet:
+
+  1. Ensure you have defined default url options in your environments files. Here 
+     is an example of default_url_options appropriate for a development environment 
+     in config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+     In production, :host should be set to the actual host of your application.
+
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
+
+       root :to => "home#index"
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+  4. If you are deploying Rails 3.1+ on Heroku, you may want to set:
+
+       config.assets.initialize_on_precompile = false
+
+     On config/application.rb forcing your application to not access the DB
+     or load models when precompiling your assets.
+
+  5. You can copy Devise views (for customization) to your app by running:
+
+       rails g devise:views
+
+--------
+Assets ... be careful and move all images in stylesheet if you want to use css
+
+---------
+
+A nice clean way to do it is using MiddleWare. Add this class to your lib directory:
+
+# lib/spoof_ip.rb
+
+class SpoofIp
+  def initialize(app, ip)
+    @app = app
+    @ip = ip
+  end
+
+  def call(env)
+    env['HTTP_X_FORWARDED_FOR'] = nil
+    env['REMOTE_ADDR'] = env['action_dispatch.remote_ip'] = @ip
+    @status, @headers, @response = @app.call(env)
+    [@status, @headers, @response]
+  end
+end
+Then find an IP address you want to use for your development environment and add this to your development.rb file:
+
+config.middleware.use('SpoofIp', '64.71.24.19')
+
+---------
+
+http://ubilabs.github.io/geocomplete/
+
+I finally used google API as kissafrog
+_______
+
+Added the username to user and uniquess as a validation at registration
+
+______
+
+Flickraw integration for later
+
+localhost:3000/photos/index
+_______
+
+Asset pipeline is a mess... css and asset pipeline even worse
+
+________
+
+convert to Time.parse for the time and stored in the database
+
+_______
+
+Working on nested_for_for
+
+interest
+
+_______
+
+contacts is via omnicontacts.... seems to work but will check in production
+installed localtunel .. doesn't work all the time.
+_______
+
+August 6.
+
+Working on finishing the activity page
+I need:
+
+Activity-edit
+Myactivity
+Activity
+
+_________
+
+contacts are working for gmail and yahoo
+redirect url has to be defined properly (/invites/...)
+
+
+_________
+aug 7/2013
+Had crazy problems with time saving to the database and not passing in the parameters
+The problem was that having a textfield for time cannot save the time.
+I had to pass separate parameters vis jquery and finally got it to work.
+
+_________
+
+aug 11/2013
+
+had a hard time figuing out how to preview image before uploading. It does not work with safari 5. But works with other browsers.
+
+_________
+
+will change upload button
+
+http://stackoverflow.com/questions/6461252/custom-upload-button
+
+__________
+
+aug 14... I actually did the edit form of the profile page
+_________\
+I used mailboxer
+
+seems to work great.
+however added this to the mailler config:
+
+You need to add the following line at every environment:
+
+config.action_mailer.default_url_options = { :host => "yourhost" }
+
+that way it can works in all the environments and could be different for anyone, for example:
+
+development.rb
+
+config.action_mailer.default_url_options = { :host => "dev.yourhost.com" }
+test.rb
+
+config.action_mailer.default_url_options = { :host => "test.yourhost.com" }
+production.rb
+
+config.action_mailer.default_url_options = { :host => "www.yourhost.com" }
+
+
+_____
+
+How to use mailboxer
+
+sender = User.find(1)
+receiver = User.find(2)
+
+send a message: 
+sender.send_message(receiver,body,subject)
+
+check all messages:
+
+------------
+
+28 AOUT 2013
+
+1. Inbox -- accept user/friend who wants to participate to your activity
+2. Recherche 
+3.recurrent --- pas recurrent, tous les jours, semaine, 2 semaines, tous les mois, tous les ans.
+4. complete --- nb of people
+5. place de libre plutot que nb user inscrit
+6. settings:
+
+	1. changer le mot de passe
+	3. changer ta date de naissance
+	4. changer ton sexe
+	5. changer ton email
+	6. delete le profile
+	7. blocquer les usagers dans chaque email recu
+
+7. following activities
+
+_____________
+30 aout
+
+date de message
+set up like activities 5
+____________
+
+sept 
+
+The slider is over the autocomplete
+need to change the z-index of slider
+
+getting 500 error on server
+
+
+Notification
+
+If someone follows your activity...
+
+    PublicActivity::Activity.where("events.trackable_id = ? AND owner_type = 'User'", current_user.id)
+
+If someone follows you....
+
+  idem sauf que la Follow
+
+ if Follow.find(activity.trackable_id).followable_type == "User"
+then
+
+   PublicActivity::Activity.where("events.trackable_id = ? AND owner_type = 'User'", @activity.user_id)
+
+If someone sends a message to you 
+
+
+
+
+
+
+
+If someone wants to participate to your events: 
+
+PublicActivity::Activity.where("events.owner_id = ? AND owner_type = 'User' AND key = "wanto_participate"", current_user)
+
+  
+
+
+Get all public_activity in order desc where User is involved
+
+
+Follow activity ....
+
+
+Private_activity_one = PublicActivity::Activity.where("events.owner_id = ? AND owner_type = 'User' AND key = "wanto_participate"", current_user)
+
+Private_activity_two = PublicActivity::Activity.where("events.trackable_id = ? AND owner_type = 'User'", current_user)
+
+
+
+
+
+
+change freegeoip 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

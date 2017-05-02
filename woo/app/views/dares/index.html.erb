@@ -1,0 +1,29 @@
+<h1>Listing dares</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+    <th>User</th>
+    <th>Priv</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dares.each do |dare| %>
+  <tr>
+    <td><%= dare.question %></td>
+    <td><%= dare.answer %></td>
+    <td><%= dare.user_id %></td>
+    <td><%= dare.priv %></td>
+    <td><%= link_to 'Show', dare %></td>
+    <td><%= link_to 'Edit', edit_dare_path(dare) %></td>
+    <td><%= link_to 'Destroy', dare, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dare', new_dare_path %>

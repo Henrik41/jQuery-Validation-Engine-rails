@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question: MyString
+  answer: MyString
+  user_id: 1
+  priv: false
+
+two:
+  question: MyString
+  answer: MyString
+  user_id: 1
+  priv: false

@@ -1,0 +1,64 @@
+<%= render 'header/header'%>
+
+<%= form_tag(controller: "general", action: "invite", id: params[:id]) do %>
+
+         <div class="clear"></div>
+		<div class="home-popular-project">
+		        <div class="container_12">
+		            <div class="grid_12 wrap-title">
+
+</br>
+<h2 class="common-title">Woo! These members would love to participate to your activity  <%= Activity.find(params[:id]).title %></h2></div>
+<% @following.each do |a| %>
+ <%= render :partial => "/start/grid3", :locals => {:a => a} %> 
+<% end %>
+
+     </div> </div>
+    </div>
+<div class="clear"></div>
+
+<center><%= submit_tag "SEND AN INVITE", :class => 'btn btn btn-red', :confirm => 'We will send a Woomail to all your selected contacts' %></center>
+
+<% end%>
+<div class="clear"></div>
+</br>
+<%= render 'footer/footer'%>
+
+<script>
+//set global constants & variable
+var full_opacity = 1;
+var faded_opacity = 0.5;
+var fade_speed = 'fast';                
+var objid;
+
+$('input[name="role_ids[]"]').each(function() {
+ 
+     //we need the image associated with this checkbox
+     //i am assuming the associated image tag has an ID of "img_" and whatever the value of the associated checkbox is
+     //e.g., img_miss_alabama_usa is the id for the image associated with the checkbox that has the checked value miss_alabama_usa
+     objid = "#img_" + $(this).val();
+      
+     if($(this).prop('checked')) {
+          //full opacity for prechecked images
+          $(objid).css('opacity', full_opacity);
+     }
+     else {
+          //partial opacity for unchecked images
+          $(objid).css('opacity', faded_opacity);
+     }
+});
+
+$('input[name="role_ids[]"]').change(function() {
+     //same method as above for associating a checkbox and its image
+     objid = "#img_" + $(this).val();
+     if($(this).prop('checked')) {
+          //full opacity for image if associated checkbox is checked
+          $(objid).fadeTo(fade_speed, full_opacity);
+     }
+     else {
+          //partial opacity for image if associated checkbox is unchecked
+          $(objid).fadeTo(fade_speed, faded_opacity);
+     }
+});
+
+</script>

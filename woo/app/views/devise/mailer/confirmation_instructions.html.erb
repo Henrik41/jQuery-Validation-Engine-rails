@@ -1,0 +1,11 @@
+
+<h1> WOOMATCH...Your almost done! </h1>
+<h2> Meet hundreds of people free! </h2>
+
+<p>Welcome <%= @resource.email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+
+

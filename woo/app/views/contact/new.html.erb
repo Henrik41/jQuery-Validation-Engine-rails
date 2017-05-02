@@ -1,0 +1,65 @@
+<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+         <div class="clear"></div>
+
+<%= form_for @contact, :url => contact_path do |form| %>
+
+<div class="layout-2cols">
+    <div class="content grid_8">
+        <div class="single-page">
+            <div class="wrapper-box box-post-comment">
+                <h2 class="common-title">Contact Us</h2>
+                <div class="box-white">
+                    <form id="contact-form" class="clearfix" action="http://envato.megadrupal.com/html/kickstars/processForm.php" method="post">
+                         <p class="rs pb30">Want us to contact you? please leave us a message and we will get back to you shortly.</p>
+                        <div class="form form-post-comment">
+                            <div class="left-input">
+                                <label for="txt_name_contact">
+	<%= form.text_field :name, :id => "txt_name_contact", :class => "txt fill-width txt-name", :placeholder => "Enter Your Name" %>
+                                
+                                </label>
+                                <label for="txt_email_contact">
+		<%= form.text_field :email, :id => "txt_name_contact", :class => "txt fill-width txt-email", :placeholder => "Enter Your Email" %>
+                                    
+                                </label>
+                            </div>
+                            <div class="right-input">
+                                <label for="txt_content_contact">
+		<%= form.text_area :body, :id => "txt_content_contact", :class => "txt fill-width ", :cols =>30, :rows =>10, :placeholder => "Enter Your Message" %>
+                                    
+                                </label>
+                            </div>
+                            <div class="clear"></div>
+                            <p class="rs ta-r clearfix">
+								<span id="response"></span>
+                                  <%= form.submit "Send", :class => "btn btn-white btn-submit-comment"  %>
+                              
+                           </p>
+                        </div>
+                    </form>
+                </div>
+            </div><!--end: .box-list-comment -->
+        </div>
+    </div><!--end: .content -->
+    <div class="sidebar grid_4">
+        <div class="box-gray">
+            <h3 class="title-box">Contact info</h3>
+            <p class="rs description pb20">You can write to us or contact us several ways:</p>
+            <p class="rs pb20">
+                <span class="fw-b">Address</span>: 2222 forest hill, Montreal, Quebec
+            </p>
+            <p class="rs pb20">
+                <span class="fw-b">Phone</span>: +1 (555) 55-55-555
+                (9AM - 6PM EST)
+            </p>
+            <p class="rs pb20">
+                <span class="fw-b">Email</span>: <a href="mailto:info@woomatch.com" class="be-fc-orange">info@woomatch.com</a>
+            </p>
+        </div>
+    </div><!--end: .sidebar -->
+    <div class="clear"></div>
+</div>
+<% end %>
+<%= render 'footer/footer' %>
+</div>

@@ -1,0 +1,90 @@
+    
+
+                <div class="grid_6">
+                    <div class="project-short sml-thumb">
+                        <div class="top-project-info">
+                            <div class="content-info-short clearfix">
+<h2>	Edit my activity</h2> 
+
+
+
+					<div id="myModal" class="reveal-modal">
+					     <h1>Email Your Friends</h1>
+					     <a href="/contacts/gmail"><%= image_tag "Gmail.png", :width => '100', :height => '70' %> </a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contacts/yahoo"><%= image_tag "Yahoo.png", :width => '100', :height => '70' %></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contacts/hotmail"><%= image_tag "Hotmail.png", :width => '150', :height => '100' %></a>
+						
+					     <a class="close-reveal-modal">&#215;</a>
+					</div>
+
+
+  								<div class="form form-profile">
+	<%= render 'activities/form' %>              
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-project-info clearfix">
+		
+			
+			<a href="#" class="btn btn-red" data-reveal-id="myModal">
+				Email Friends 
+			</a>
+			 <div class="btn btn-blue"><a href="#" >
+			
+	
+                                <%= image_tag "thumbup.png" %>
+                            </a>Facebook</div>
+                            <div class="line-progress">
+                                <div class="bg-progress">
+                                    <span class="success" style="width: 98%"></span>
+                                </div>
+                            </div>
+                            <div class="group-fee clearfix">
+
+                                <div class="fee-item">
+                                    <p class="rs lbl">Credibility</p>
+                                    <span class="val">98%</span>
+                                </div>
+                                <div class="sep"></div>
+                                <div class="fee-item">
+                                    <p class="rs lbl">Interested</p>
+                                    <span class="val">100</span>
+                                </div>
+                                <div class="sep"></div>
+                                <div class="fee-item">
+                                    <p class="rs lbl">Days Left</p>
+                                    <span class="val">18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--end: .grid_3 > .project-short-->
+				<div class="popup-common" id="sys_popup_common">
+				    <div class="overlay-bl-bg"></div>
+				    <div class="container_12 pop-content">
+				        <div class="grid_12 wrap-btn-close ta-r">
+				            <i class="icon iBigX closePopup"></i>
+				        </div>
+				        <div class="grid_6 prefix_1">
+				<%= render "devise/registrations/new" %>
+				      </div>
+				        <div class="grid_4">
+				            <div class="form login-form">
+					<%= render "devise/sessions/new" %>
+
+				            </div>
+				        </div>
+				        <div class="clear"></div>
+				    </div>
+				</div>
+				
+	
+				
+				<script type="text/javascript">
+				$(document).ready(function() {
+				     $('#myButton').click(function(e) {
+				          e.preventDefault();
+					  $('#myModal').reveal();
+				     });
+				});
+				</script>		

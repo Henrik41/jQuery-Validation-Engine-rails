@@ -1,0 +1,4 @@
+$("#thepartial").hide();
+$("#location_main").hide();
+$("#location_change").empty().prepend('<%= @param %>').effect("highlight", {}, 1500);
+$("#select_button").empty().html('<% @activity.each do |a| %><%= raw(escape_javascript(render :partial => "start/grid", :locals => {:a => a})).html_safe %><% end %>').effect("highlight", {}, 1500);

@@ -1,0 +1,59 @@
+
+<%= form_for(resource, :html => {:id => "form_id2"},  :as => resource_name, :url => session_path(resource_name)) do |f| %>
+ 	   <h3 class="rs title-form">Login</h3>
+
+
+<div class="box-white">
+
+         <h4 class="rs title-box">Already Have an Account?</h4>
+         <p class="rs">Please log in to continue.</p>
+
+<div class="form-action">
+
+          <label for="txt_email_login">
+	 <%= f.email_field :email, :class => "span2 validate[required,ajax[ajaxUserCall]] text-input txt fill-width",  :placeholder => 'Enter your e-mail address'%>
+          </label>
+
+<label for="txt_password_login">
+		 <%= f.password_field :password, :class => "span2 validate[required] text-input txt fill-width", :placeholder => 'Enter password' %>
+	          </label>
+			<label for="txt_password_login">
+<div id= 'your_input_field'>
+				
+</div>
+				          </label>
+
+			<label for="chk_remember" class="rs pb20 clearfix">
+       
+  <% if devise_mapping.rememberable? -%>
+   <%= f.check_box :remember_me, :id => 'chk_remember', :class => 'chk-remember' %> <span class="lbl-remember">Remember me</span>   </label>
+  <% end -%>
+	<p class="rs ta-c pb10">
+		<%= f.submit "Login", :class => 'btn btn-red btn-submit' %>
+		<%= link_to "Login With Facebook", user_omniauth_authorize_path(:facebook),  :class => 'btn btn-blue btn-submit'  %> 
+      
+  </p>
+  <p class="rs ta-c">
+      <a href="/users/password/new" class="fc-orange">I forgot my password</a>
+  </p>
+</div>
+</div>
+
+
+<% end %>
+
+
+
+<script>
+$(document).ready(function(){
+    $('#your_input_id').set_timezone();
+})
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#form_id2").validationEngine();
+});
+</script>
+
+

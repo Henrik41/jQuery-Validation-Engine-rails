@@ -1,0 +1,161 @@
+<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+         <div class="clear"></div>	
+<div class="home-popular-project">
+	
+
+<div class="container_12c">
+
+<div class="grid_10_1 wrap-title2">
+
+          			    <div class="layout-2cols">
+
+					        <div class="content grid_10">
+						 <h1>Advanced Search</h1>  
+				 <form action="#">
+                        <div class="form form-email">
+                        
+ 								<%= search_form_for @search do |f| %>
+							
+								    
+								    <%= text_field_tag :location, params[:location], {:class => 'span2 address-picker-input', :placeholder => 'Enter a Location'} %>
+															  
+								  <%= f.text_field :start_date_gteq, :class => "txt datepicker", :placeholder => 'Starting Date' %>
+								  <%= f.text_field :start_date_lteq, :class => "txt datepicker",  :placeholder => 'Ending Date'   %>
+								
+								  <%= f.text_field :interests_interest_cont,  :class => "txt",  :placeholder => 'Enter your interest'  %>
+								
+								Sex: <%= f.select :user_sex_eq, [nil,['male'],['female']], :class => "txt" %>
+							   
+							       
+				Between
+						<%= f.select :user_realage_gteq, (16..99), :class => "txt2" %> and
+						<%= f.select :user_realage_lteq, (16..99), :class => "txt2", :selected => 99 %>		
+					    <%= f.submit "Search", :class=> "btn btn-green2" %>	
+						<% end %>             
+		
+	
+		
+		
+
+	</div></br>
+      </form>
+
+
+
+</div></div>
+                <a class="be-fc-orange" href="/activities/new">Create your own activity</a>
+
+	  
+	</div>
+
+  
+
+
+             <div class="clear clear-2col"></div>
+ </div><!--end: .home-popular-project -->
+
+
+<div class="layout-2cols">
+				
+			        <div class="content grid_9">
+				
+			        <div class="project-detail">
+<div class="project-tab-detail tabbable accordion">
+				</br></br>
+			                    <ul class="nav nav-tabs clearfix" id="my_tabs">
+			                      <li class="active"><a href="#one" data-toggle="tab">Most Popular</a></li>
+			                      <li><a href="#two" class="be-fc-orange" data-toggle="tab">Closest to you</a></li>
+						                      <li><a href="#three" data-toggle="tab">Most recent</a></li>
+
+			                    </ul>
+<div class="tab-content">
+			                        <div>
+			                            <h3 class="rs alternate-tab accordion-label">Most Popular</h3>
+<div id="one" class="tab-pane accordion-content active" >
+			                               
+			
+			<% @activitiespop.each do |a| %>
+				 <%= render :partial => '/general/myactivityinfo', :locals => {:a => a} %> 
+				<% end %>
+			<center>	<%= paginate @activitiespop, :params => {:tab => "one"} %> </center>
+</div><!--end: .tab-pane -->
+			                        </div>
+			                        <div>
+			                            <h3 class="rs alternate-tab accordion-label">Closest to you</h3>
+			                            <div id="two" class="tab-pane accordion-content" >
+											<% @activitiesnear.each do |a| %>
+												 <%= render :partial => '/general/myactivityinfo', :locals => {:a => a} %> 
+												<% end %>
+
+			                      <center>	<%= paginate @activitiesnear, :params => {:tab => "two"} %> </center>     
+			 </div><!--end: .tab-pane -->
+			                        </div>
+			                      
+									<div>            
+								                            <h3 class="rs alternate-tab accordion-label">Most Recent</h3>
+								    <div id="three" class="tab-pane accordion-content" >
+																<% @activitiesrecent.each do |a| %>
+																	 <%= render :partial => '/general/myactivityinfo', :locals => {:a => a} %> 
+																	<% end %>
+
+<center>	<%= paginate @activitiesrecent, :params => {:tab => "three"} %> </center>
+								    </div><!--end: .tab-pane -->
+			</div>
+
+
+
+			
+</div><!--end: .project-tab-detail -->
+
+<% @tab_id = params[:tab] ? "#my_tabs a[href=" + %Q(##{params[:tab]}) + "]" : "#my_tabs a:first" %>
+<% content_for :footer do %>
+    <script>
+      $(function () {
+        $('#<%= @tab_id %>').tab('show');
+      })
+    </script>
+<% end %>
+						
+</div>
+			        </div><!--end: .content -->
+</br>
+
+					</div>
+  	<b><center>		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></b></br>
+  	<b><center>		People Next to You</center></b></br>
+
+
+	
+<% @people.each do |a| %>
+<%= render :partial => '/people/grid', :locals => {:a => a} %>
+<% end %>
+	              
+</div>
+			    
+
+			
+			    <div class="clear"></div>
+
+	
+
+ <div class="clear clear-2col"></div>
+</div>
+  
+</div>
+  <%= render 'footer/footer' %>
+</div>
+
+
+<script>
+$(function() {
+  $(".datepicker").datepicker({ dateFormat: "yy-mm-dd"
+ 	});
+});
+</script>
+
+<script type="text/javascript">
+    AddressPickerRails.Pickers.applyOnReady();
+</script>
+

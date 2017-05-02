@@ -1,0 +1,32 @@
+
+
+        <div class="grid_3">
+            <div class="project-short sml-thumb">
+                <div class="top-project-info">
+                    <div class="content-info-short clearfix">
+	 
+     <%= image_tag User.find(a.followable_id).avatar.url(:grid), :id => 'img_'+ User.find(a.followable_id).id.to_s %>
+
+
+                        <div class="wrap-short-detail">
+                            <h3 class="rs acticle-title">
+
+                	
+	
+		<label>
+	<%= check_box_tag 'role_ids[]', User.find(a.followable_id).id %>
+	
+	
+	
+	 <%= User.find(a.followable_id).username %> </label>
+	
+		<%=  link_to "Profile",  {:controller => 'profile', :action => 'show', :id => a.followable_id }, :class=>"btn btn-blue" %>
+	
+
+            
+                    </div>
+                </div>
+</div>
+        </div><!--end: .grid_3 > .project-short-->
+</div>
+

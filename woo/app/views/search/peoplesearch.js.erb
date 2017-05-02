@@ -1,0 +1,4 @@
+$("#thepartial").hide();
+$("#location_main").hide();
+$("#location_change").empty().prepend('<%= @param %>').effect("highlight", {}, 1500);
+$("#select_button").empty().prepend('<%= escape_javascript(render :partial => "/people/grid2") %>').effect("highlight", {}, 1500);

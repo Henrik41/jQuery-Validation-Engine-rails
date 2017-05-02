@@ -1,0 +1,92 @@
+cap deploy:cleanup
+cap deploy:cold
+
+ssh root@66.228.34.47
+ps aux | grep unicorn
+kill -9 ...
+
+/etc/init.d/unicorn_woomatch start
+
+
+
+To set the correct permissions
+
+cd ..
+cd ..
+
+chmod 755 yourapp -R
+
+cd woomatch
+cd current
+
+
+To clear you tmp folder
+
+rake tmp:pids:clear             
+rake tmp:sessions:clear
+rake tmp:sockets:clear
+rake tmp:cache:clear
+
+
+check release...
+
+cd woomatch
+ls
+cd release 2013.....
+rake tmp:cache:clear
+
+sudo rm /tmp/unicorn.woomatch.sock
+sudo /etc/init.d/unicorn_woomatch start
+
+
+RAILS_ENV=production rake assets:precompile
+
+chmod -R 777 /home/henrik41/apps/woomatch/releases/20131230001227/tmp
+
+
+I had to rebuld a user bill
+reinstall rbenv
+etc
+
+don't forget to change unicorn.rb!!!
+
+http://dan.carley.co/blog/2012/02/07/rbenv-and-bundler/
+
+
+
+
+when cap deploy:cold...
+
+1. Kill all Unicorn 
+2. wait until everything is install!!!
+3. relocate in current directory
+4. Precompile assets in local directory
+5. kill all Unicorn
+6. redemarer unicorn
+
+
+ssh bill@173.255.237.221
+ps aux | grep unicorn
+cd /home/bill/apps/woomatch/current
+bundle exec unicorn_rails -c config/unicorn.rb -D -E production
+bundle exec rake log:clear
+RAILS_ENV=production script/delayed_job restart
+bundle exec rake jobs:clear RAILS_ENV=production
+bundle exec rake assets:precompile RAILS_ENV=production
+
+bundle exec rake sitemap:refresh
+bundle exec rake sitemap:refresh RAILS_ENV=production
+RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production
+
+Rails 4.0.3
+ruby 1.9.3p392
+
+git add .
+git commit -m "this is my commit"
+git push origin master
+
+cap deploy
+
+
+
+

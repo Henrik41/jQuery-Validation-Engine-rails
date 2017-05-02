@@ -1,0 +1,41 @@
+
+<%= render "header/header" %>
+
+</br>
+</br>
+<% if current_user %>
+<%= render 'activities/navbar' %>
+<% end %>	
+         <div class="clear"></div>
+		<div class="home-popular-project">
+		        <div class="container_12">
+		            <div class="grid_12 wrap-title">
+
+</br>
+<h2 class="common-title">Here is what you are looking for:</h2></div>
+<% @searchs.each do |a| %>
+ <%= render :partial => "/start/grid", :locals => {:a => a} %> 
+<% end %>
+
+     </div> </div>
+    </div>
+   <div class="clear"></div>
+<%= render 'footer/footer'%>
+
+
+<div class="popup-common" id="sys_popup_common">
+    <div class="overlay-bl-bg"></div>
+    <div class="container_12 pop-content">
+	 <div class="grid_6">       
+	            <div class="form login-form">
+					<%= render "devise/sessions/new" %>
+				</div>            
+	            </div>
+	   			 <div class="grid_1 wrap-btn-close ta-r">
+			            <i class="icon iBigX closePopup"></i>
+			     </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+

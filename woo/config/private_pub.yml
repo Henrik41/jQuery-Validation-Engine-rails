@@ -1,0 +1,11 @@
+development:
+  server: "http://localhost:9292/faye/faye"
+  secret_token: "secret"
+test:
+  server: "http://localhost:9292/faye/faye"
+  secret_token: "secret"
+production:
+  server: "http://woomatch.com/faye/faye"
+  secret_token: "e0e624960f0332d2814b41f014ca44a3dbf8c549d37af4bb4da8e115d2675348"
+  signature_expiration: 3600 # one hour
+  

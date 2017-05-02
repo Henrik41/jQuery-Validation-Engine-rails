@@ -1,0 +1,21 @@
+<div class="tab-pane-inside">
+	
+<% 	@whos_following.each do |u| %>
+
+
+    <div class="project-author pb20">
+        <div class="media">
+            <a href='/profile/<%= u.id %>' class="thumb-left">
+               <%= image_tag (u.avatar.url(:mini))%>
+            </a>
+            <div class="media-body">
+                <h4 class="rs pb10"><a href='/profile/<%= u.id %>' class="be-fc-orange fw-b"><%= u.username %></a></h4>
+                <p class="rs"><%= u.location %></p>
+                <p class="rs fc-gray">has <%= u.activities.count %> activities</p>
+            </div>
+        </div>
+    </div><!--end: .project-author -->
+
+<% end %>
+
+</div>

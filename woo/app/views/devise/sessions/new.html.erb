@@ -1,0 +1,71 @@
+<%= render 'header/header' %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+ 	   <h3 class="rs title-form">Login</h3>
+	<% flash.each do |name, msg| %>
+	  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end -%>
+
+
+     <div class="box-white">
+
+         <h4 class="rs title-box">Already Have an Account?</h4>
+         <p class="rs">Please log in to continue.</p>
+
+         <div class="form-action">
+	
+			 
+			 
+			
+             <label for="txt_email_login">
+	 <%= f.email_field :email, :class => 'txt fill-width', :placeholder => 'Enter your e-mail address', :autofocus => true %>
+          </label>
+
+<label for="txt_password_login">
+		 <%= f.password_field :password, :class => 'txt fill-width', :placeholder => 'Enter password', :autofocus => true %>
+	          </label>
+
+
+
+
+				<label for="chk_remember" class="rs pb20 clearfix">
+       
+  <% if devise_mapping.rememberable? -%>
+   <%= f.check_box :remember_me, :id => 'chk_remember', :class => 'chk-remember' %> <span class="lbl-remember">Remember me</span>   </label>
+  <% end -%>
+	<p class="rs ta-c pb10">
+		<%= f.submit "Login", :class => 'btn btn-red btn-submit' %>
+      
+  </p>
+  <p class="rs ta-c">
+      <a href="/users/password/new" class="fc-orange">I forgot my password</a>
+  </p>
+</div>
+</div>
+
+  <div></div>
+<% end %>
+
+<center><%= render "devise/shared/links" %> </center>
+</br>
+</br>
+
+<%= render 'footer/footer'%>
+
+<div class="popup-common" id="sys_popup_common">
+    <div class="overlay-bl-bg"></div>
+    <div class="container_12 pop-content">
+        <div class="grid_12 wrap-btn-close ta-r">
+            <i class="icon iBigX closePopup"></i>
+        </div>
+        <div class="grid_6 prefix_1">
+<%= render "devise/registrations/new" %>
+      </div>
+        <div class="grid_4">
+            <div class="form login-form">
+	<%= render "devise/sessions/new" %>
+            
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

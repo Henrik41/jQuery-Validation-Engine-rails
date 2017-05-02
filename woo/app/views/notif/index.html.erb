@@ -1,0 +1,37 @@
+<div id="wrapper">
+	<%= render "header/header" %>
+	<%= render 'activities/navbar' %>	
+	         <div class="clear"></div>
+			  <div class="home-popular-project">
+					        <div class="container_12">
+
+
+<ul id="chatbox">
+<% @messages.each do |m| %>
+  
+  <%= render partial: 'notif', locals: {message: m} %>
+<% end %>
+</ul>
+  <div class="form-action">
+<label for="txt_name">
+<%= form_for Notif.new, :url => {controller: 'notif', action:'create'},  remote: true do |f| %>
+  <%= f.text_field :shout, :class => "txt"  %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.submit "SHOUT!!!", :class => 'btn btn-red' %>
+</label></div>
+<% end %>
+
+<%= subscribe_to "/notif/index" %>
+</div>
+</div>
+<%= render 'footer/footer'%>
+</div>
+
+
+
+<script>
+var downplease = $("#chatbox").prop("scrollHeight") - 20; //Scroll height
+$("#chatbox").animate({ scrollTop: downplease }, 'normal'); //Autoscroll to bottom of div
+
+</script>
+

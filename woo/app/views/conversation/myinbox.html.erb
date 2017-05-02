@@ -1,0 +1,191 @@
+<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+<div class="clear"></div>
+
+  <div class="home-popular-project">
+		<div class="layout-2cols">
+		        <div class="content grid_8">
+					 <div class= "topmessage">  
+							<div class='topmessageright'>
+								<a class="btn btn-red" href="/conversation/myoutbox">Check my Outbox</a> 
+								</div>    
+						<div class='box-white30' style ="display:inline;">  <h3 class="rs project-title">
+							
+							Hey <%= current_user.username %> you have 
+							
+							<% if @messages_count >= 1 %>
+						
+						<audio autoplay>
+							  <source src="/assets/sounds/send.mp3">
+							</audio>
+						
+								
+						    <div class="blink3" style ="display:inline;">
+							<%= @messages_count %> NEW mail(s)
+							</div>
+							
+							<% else %>
+								no new mails
+								<% end%></h2> 
+						</div> 
+					
+				</div> 
+					
+					
+			</br>
+	
+		
+<% @conversations.each do |c| %>	
+		
+
+<% if c.messages.last.receipts.where(:receiver_id => current_user).first.is_read? == false %> 	<div class="box-white5"> <%else%>
+				<div class="box-white4"> <% end %>
+		          		    <h3 class="title-box2">From</h3>
+							 <div class="media">
+								 <% whois = c.participants - Array(current_user) %>
+				                 <a href="/profile/<%=whois[0].id%>" class="medium_images2"> 
+				         			   
+											
+				
+									
+									 <% if whois.empty? %>
+<% if current_user.online? %> 	<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop2' %><% end %>
+									  <%= image_tag current_user.avatar.url(:grid) %>
+								
+									<% else %>
+									
+													<% if whois[0].online? %> 	<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop2' %><% end %>	
+									 <% if whois[0].avatar? %>
+					
+									   <%= image_tag whois[0].avatar.url(:mini) %> 
+									 <% else %>
+									   <%= image_tag '/assets/ex/blankmini2.jpg' %>
+									 <% end %>
+									
+									<% end %>    </a>
+									
+							
+								<h3 class="rs"><a href="#" class="be-fc-orange fw-b">	<% if whois.empty? %>
+									  <%= current_user.username %>
+									<% else %>
+								<%= whois[0].username %>
+								<% end%></a></h3>
+								   <h4 class="rs">
+
+
+					                 <div class="media-body">
+					                   <a href="#" class="be-fc-orange fw-b">sent: <%= c.created_at %></a></h4>
+				
+			
+					<div class="thumb-middle">
+									    <% whois = c.participants - Array(current_user) %>
+ 
+					  <h2 class="rs"><a href="#" class="be-fc-orange fw-b">	<%= link_to c.subject, :controller => 'conversation', :action => 'show', :id => c.id %> </a></h2>
+					</div>
+
+					<div class="thumb-right">
+
+
+							<% if !current_user.avatar? %>
+
+								<%=  link_to_modal "Read", "#myModal5", :class=>"btn btn-blue" %>
+							<div id="myModal5"  class="demo-description" style="display: none; ">
+
+
+
+								<%= nested_form_for current_user, :url => '/profile/updatepic',  :html => { :multipart => true, :id => "form_id2"}, :validate => :true do |f| %>
+
+									         <div class="clear"></div>
+																					<h3>Hey there <%= current_user.username%>. Add a picture and read your Woomessages now. </h3>
+
+																         
+																					<% if f.object.avatar? %>
+																			 <div id="mypic">	<%= image_tag f.object.avatar.url(:mini) %></div>
+																					<%else%>
+							<a class="thumb-avatar" href="#"><img src="/assets/ex/blankmini.jpg" width="100" height="100"alt="$USER_NAME"/></a>
+							<%end%>
+
+
+													                         <div class="bottom-project-info clearfix">           
+															    <% if f.object.avatar? %>
+																   <%= f.file_field :avatar, :class => 'autrechose'  %> 
+																<% else %>		  
+																    <%= f.file_field :avatar, :class => 'validate[required]' %> 
+																<% end %>	</div>		
+																           <p class="wrap-btn-submit rs ta-r">
+									                                            <button class="btn btn-red btn-submit-all">Save my pic</button>
+
+									                                        </p>
+									                                    </form>
+								
+									
+								<% end %>
+</div>
+<% elsif  current_user.voted_on? whois[0] %>
+							
+					<%=  link_to_modal "Read", "#demo-form", :class=>"btn btn-blue" %>
+
+						<div id="demo-form" class="demo-description" style="display: none; ">
+						
+						  <p>
+
+						<b>Please unblock this user first.</b>
+							    <br />
+
+						  </p>
+						</div>
+				
+<% else %>
+				
+			
+			
+					                     <div class="btn btn-blue" ><%= link_to 'Read', {:controller => 'conversation', :action => 'show', :id => c.id, :page => (c.messages.length.to_f/6).ceil}, {:style =>'color:#ffffff'}    %></div>
+					
+<% end %>
+
+<div class = 'btn btn-red'>				                   
+<%= link_to 'Delete', trash_path(:conversation_id => c.id), { :method => :post , :style =>'color:#ffffff' } %>
+</div>
+
+<% if current_user.voted_on? whois[0] %>
+
+<div class="btn btn-black" ><%= link_to 'Unblock', {:controller => 'profile', :action => 'unblock', :id => whois[0].id}, {:style =>'color:#ffffff'}    %></div>
+<% else %>
+<div class="btn btn-black" ><%= link_to 'Block', {:controller => 'profile', :action => 'block', :id => whois[0].id}, {:style =>'color:#ffffff'}    %></div>
+<% end %>
+					</div>
+							</div>
+				  </div>
+<% end %>
+
+<%= paginate @conversations %>
+		        </div><!--end: .content -->
+<%= render "sidebar" %>
+
+		        <div class="clear"></div>
+		 </div>
+</div>
+
+<%= render 'footer/footer'%>
+
+
+
+</div>
+<script type="text/javascript">
+	$(function() {
+	    var x;
+	        setInterval(function() {
+	                if(x == 0) {
+	                    $('.blink2').removeAttr('style');
+	                    x = 1;
+	                } else  {
+	                    if(x = 1) {
+	                        $('.blink2').css('color', 'red');
+	                        x = 0;
+	                    }
+	                }
+	        }, 500);
+	});
+	</script>
+

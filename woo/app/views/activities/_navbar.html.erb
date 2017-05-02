@@ -1,0 +1,81 @@
+ <div class="clearfix"></div>
+	  <div class="home-popular-project2">
+<div class="container_12">
+	
+
+
+
+			<!-- mega menu -->
+			<ul class="sky-mega-menu sky-mega-menu-response-to-icons">
+				
+					<li>
+							<a href="#"><%= image_tag('/assets/logowoo2.png') %></i></a>
+					</li>
+					
+				
+					<!-- home -->
+					<li class ="<%= controller.class == YactivitiesController  and controller.action_name == 'home' ? 'current' : '' %>">
+							<a href="/yactivities/home"><i class="fa fa-home"></i> &nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp; </a>
+					</li>
+					<!--/ home -->
+					
+				
+					<!-- home -->
+					<li class ="<%= controller.class == StartController  and controller.action_name == 'dashboard' ? 'current' : '' %>">
+							<a href="/start/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a>
+					</li>
+					<!--/ home -->
+					
+				<!-- wooshout -->
+					 <li class ="<%= controller.class == NotifController and controller.action_name == 'index' ? 'current' : '' %>">
+					<a href="/notif/index"><i class="fa fa-bullhorn"></i>Wooshout</a>
+				</li>
+				<!--/ wooshout -->
+				
+				
+							<!-- My Activities -->
+						  <li class ="<%= controller.class == ActivitiesController and controller.action_name == 'myactivities' ? 'current' : '' %>"><a href="/activities/myactivities" title="My activities">
+									<a href="/activities/myactivities"><i class="fa fa-picture-o"></i>My Activities</a>
+									<div class="grid-container1">
+										<ul>
+											<li class ="<%= controller.class == ActivitiesController and controller.action_name == 'new' ? 'current' : '' %>"><a href="/activities/new"><i class="fa fa-plus"></i>New Activity</a></li>
+											
+										</ul>
+									</div>
+							</li>
+							<!--/ My activities -->
+							
+								<!-- Favorites -->
+								 <li class ="<%= controller.class == FollowController and controller.action_name == 'ifollow' ? 'current' : '' %>">
+										<a href="/follow/ifollow"><i class="fa fa-trophy"></i>Favorites</a>
+								</li>
+								<!--/ Favorites -->
+								
+									<!-- Woomembers -->
+									  <li class ="<%= controller.class == PeopleController and controller.action_name == 'index' ? 'current' : '' %>">
+											<a href="/people/index"><i class="fa fa-group"></i>WooMembers</a>
+									</li>
+									<!--/ Woomembers -->
+								
+										<!-- Search -->
+									  <li class ="<%= controller.class == SearchController and controller.action_name == 'activitysearch' ? 'current' : '' %>">
+												<a href="/search/activitysearch"><i class="fa fa-eye"></i>Advanced Search</a>
+										</li>
+										<!--/ Search -->
+										
+										
+												<!-- about 
+												<li aria-haspopup="true">
+													<a href="/info/about"><i class="fa fa-star"></i>About us</a>
+												</li>
+												 about -->
+															
+			</ul>
+			<!--/ mega menu -->
+
+
+
+</div>
+
+</div>
+

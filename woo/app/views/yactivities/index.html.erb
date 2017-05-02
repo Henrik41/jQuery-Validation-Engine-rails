@@ -1,0 +1,23 @@
+<h1>Listing yactivities</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @yactivities.each do |yactivity| %>
+  <tr>
+    <td><%= yactivity.user_id %></td>
+    <td><%= link_to 'Show', yactivity %></td>
+    <td><%= link_to 'Edit', edit_yactivity_path(yactivity) %></td>
+    <td><%= link_to 'Destroy', yactivity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Yactivity', new_yactivity_path %>

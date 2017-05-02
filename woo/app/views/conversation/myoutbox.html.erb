@@ -1,0 +1,147 @@
+
+<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+         <div class="clear"></div>
+
+  <div class="home-popular-project">
+		<div class="layout-2cols">
+		        <div class="content grid_8">
+	 
+						
+						
+							 <div class= "topmessage">  
+									<div class='topmessageright'>
+										<a class="btn btn-red" href="/conversation/myinbox">Check my Inbox</a> 
+										</div>    
+								<div class='box-white3'>  <h4 class="rs project-title">Hey <%= current_user.username %> you sent <%=@messages_out_count%> messages to the following users</h4> 
+								</div> 
+
+						</div> 
+					
+			</br>
+	
+		
+<% @conversations.each do |c| %>		
+				<div class="box-white4">
+		          		    <h3 class="title-box2">To</h3>
+							 <div class="media">
+				      
+				         			    <% whois = c.participants - Array(current_user) %>
+				
+				           <a href="/profile/<%=whois[0].id%>" class="medium_images2">
+									 <% if whois.empty? %>
+<% if whois.online? %> 	<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop2' %><% end %>
+									  <%= image_tag current_user.avatar.url(:mini) %>
+									<% else %>
+										<% if whois[0].avatar? %>
+										<% if whois[0].online? %> 	<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop2' %><% end %>
+										
+										   <%= image_tag whois[0].avatar.url(:mini) %> 
+										 <% else %>
+										
+										   <%= image_tag '/assets/ex/blankmini2.jpg' %>
+										 <% end %>
+									<% end %>    </a>
+							
+								<h3 class="rs"><a href="#" class="be-fc-orange fw-b">	<% if whois.empty? %>
+									  <%= current_user.username %>
+									<% else %>
+								<%= whois[0].username %>
+								<% end%></a></h3>
+								   <h4 class="rs">
+
+
+					                 <div class="media-body">
+					                   <a href="#" class="be-fc-orange fw-b">sent: <%= c.created_at %></a></h4>
+				
+					</br>
+					<div class="thumb-middle">
+						 <% whois = c.participants - Array(current_user) %>
+
+					  <h2 class="rs"><a href="#" class="be-fc-orange fw-b">	<%= link_to c.subject, :controller => 'conversation', :action => 'show', :id => c.id %> </a></h2>
+					</div>
+
+					<div class="thumb-right">
+
+
+<% if !current_user.avatar? %>
+
+														<%=  link_to_modal "Read", "#myModal5", :class=>"btn btn-blue" %>
+<div id="myModal5"  class="demo-description" style="display: none; ">
+
+
+
+														<%= nested_form_for current_user, :url => '/profile/updatepic',  :html => { :multipart => true, :id => "form_id2"}, :validate => :true do |f| %>
+
+															         <div class="clear"></div>
+																											<h3>Hey there <%= current_user.username%>. Add a picture and read your Woomessages now. </h3>
+
+
+																											<% if f.object.avatar? %>
+																									 <div id="mypic">	<%= image_tag f.object.avatar.url(:mini) %></div>
+																											<%else%>
+													<a class="thumb-avatar" href="#"><img src="/assets/ex/blankmini.jpg" width="100" height="100"alt="$USER_NAME"/></a>
+<%end%>
+
+
+																			                         <div class="bottom-project-info clearfix">           
+																					    <% if f.object.avatar? %>
+																						   <%= f.file_field :avatar, :class => 'autrechose'  %> 
+																						<% else %>		  
+																						    <%= f.file_field :avatar, :class => 'validate[required]' %> 
+																						<% end %>	
+																						</div>		
+																						           <p class="wrap-btn-submit rs ta-r">
+															                                            <button class="btn btn-red btn-submit-all">Save my pic</button>
+
+															                                        </p>
+															                                    </form>
+
+<% end %>
+													
+</div>
+						
+						
+	<% else %>						
+						
+
+
+					                     <div class="btn btn-blue" ><%= link_to 'Read', {:controller => 'conversation', :action => 'show', :id => c.id, :page => (c.messages.length.to_f/6).ceil}, {:style =>'color:#ffffff'}    %></div>
+					
+	<% end %>
+					                     <a class="btn btn-red" href="#">Delete</a>
+					</div>
+							</div>
+				  </div>
+<% end %>
+	<%= paginate @conversations %>
+		        </div><!--end: .content -->
+
+				<%= render "sidebar" %>
+
+						        <div class="clear"></div>
+						</div>
+				</div>
+<%= render 'footer/footer'%>
+
+
+
+</div>
+
+<script type="text/javascript">
+	$(function() {
+	    var x;
+	        setInterval(function() {
+	                if(x == 0) {
+	                    $('.blink2').removeAttr('style');
+	                    x = 1;
+	                } else  {
+	                    if(x = 1) {
+	                        $('.blink2').css('color', 'red');
+	                        x = 0;
+	                    }
+	                }
+	        }, 500);
+	});
+	</script>

@@ -1,0 +1,87 @@
+        <div class="grid_3">
+            <div class="project-short sml-thumb">
+                <div class="top-project-info">
+                    <div class="content-info-short clearfix">
+	<% if  user_signed_in? %>
+						<% if a.user_id == current_user.id %>
+						<a href="/activities/<%= a.id %>" class="thumb-img">
+						<% else %>
+					<a href="/activity/<%= a.id %>" class="thumb-img">
+						<% end %>
+	<% else %>	<a class="sys_show_popup_login thumb-img" ><% end%>
+                        
+	<% if a.avatar.url.present? %>
+                      <%= image_tag a.avatar.url(:grid) %>
+    <% else %>
+    					<%= image_tag 'ex/blankevent.jpg'%>
+     <% end %>
+
+                        </a>
+
+
+                        <div class="wrap-short-detail">
+                            <h3 class="rs acticle-title">
+	<% if user_signed_in? %>
+		<% if a.user_id == current_user.id %>
+		<a class="be-fc-orange" href="/activities/<%= a.id %>" ><%= a.title.capitalize %></a></h3>
+	<% else %>
+	<a class="be-fc-orange" href="/activity/<%= a.id %>" ><%= a.title.capitalize %></a></h3>
+	<% end %>
+	<% else %>
+		<a class="sys_show_popup_login" ><%= a.title.capitalize %></a></h3>
+	<% end%>
+                            <p class="rs tiny-desc">by 
+	
+	
+<a class="sys_show_popup_login" >	 <%= image_tag(User.find(a.user_id).avatar.url(:supermini), :height =>'30', :width => '30') %>
+</a>
+                    <p class="rs title-description"><div class="description_space"><%=a.about.capitalize[0,90]%>...(more)</div></p>
+                            <p class="rs project-location">
+                                <i class="icon iLocation"></i>
+                                <%= a.location[0..20] %>  &nbsp; &nbsp;&nbsp;</br> <%= a.distance_from(@loc).round(1)%>&nbsp;miles
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-project-info clearfix">
+registered people: <%= a.completion.round(1) %>%   
+                    <div class="line-progress">
+                        <div class="bg-progress">
+                            <span <% if a.completion < 51 %> 
+	<%else%>
+								class="success" 
+								<%end%>	
+									style="width: <%= a.completion %>%;"></span>
+                        </div>
+                    </div>
+                    <div class="group-fee clearfix">
+                        <div class="fee-item">
+                            <p class="rs lbl">Price</p>
+                            <span class="val"><%= a.price %></span>
+                        </div>
+                        <div class="sep"></div>
+                        <div class="fee-item">
+                            <p class="rs lbl">Liked</p>
+                            <span class="val"><%= a.followers_count %></span>
+                        </div>
+                        <div class="sep"></div>
+                        <div class="fee-item">
+                            <p class="rs lbl">Time Left</p>
+                            <span class="val">
+
+
+<% if a.ending < @timenow %>
+											Ended
+											<% else %>
+											
+	<%= distance_of_time_in_words(@timenow, a.ending) %>
+	<% end %>
+	 </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div><!--end: .grid_3 > .project-short-->

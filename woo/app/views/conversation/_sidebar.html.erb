@@ -1,0 +1,95 @@
+        <div class="sidebar grid_4">
+            <div class="project-runtime">
+                <div class="box-gray">
+                    <div class="project-date clearfix">
+                        <i class="icon iCalendar"></i>
+                        <span class="val"><span class="fw-b">Why not add an activity </span>Now</span>
+                    </div>
+                    <div class="project-date clearfix">
+                        <i class="icon iClock"></i>
+                        <span class="val"><span class="fw-b"> Make </span>new friends</span>
+                    </div>
+                    <a class="btn btn-green btn-buck-project" href="/activities/new">
+                        <span class="lbl">Add an Activity</span>
+                        <span class="desc">and make some new friends</span>
+                    </a>
+                    <p class="rs description">Know people that would be interested in participating at this activity? Send them an email now</p>
+</br>
+			       <div class="bottom-project-info clearfix">
+						<div class="btn btn-red" id="myButton"> Email Friends </div> <div class="fb-like" data-href="http://www.woomatch.com" data-width="60" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+
+			            
+			        </div>
+
+	  				<div id="myModal" class="reveal-modal">
+					     <h1>Email Your Friends</h1>
+					     <a href="/contacts/gmail"><%= image_tag "Gmail.png", :width => '100', :height => '70' %> </a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contacts/yahoo"><%= image_tag "Yahoo.png", :width => '100', :height => '70' %></a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/contacts/hotmail"><%= image_tag "Hotmail.png", :width => '150', :height => '100' %></a>
+
+					     <a class="close-reveal-modal">&#215;</a>
+					</div>
+
+                </div>
+            </div><!--end: .project-runtime -->
+            <div class="project-author">
+                <div class="box-gray">
+                    <h3 class="title-box">Check These New Members</h3>
+	<% @checkuser.each do |u| %>
+                    <div class="media">   
+	<% if u.avatar.url(:mini) %>  
+	 <%= link_to (image_tag u.avatar.url(:mini), :width => '101', :height => '101', :class => 'onbottom'), {:controller => 'profile', :action =>'show', :id => u.id }, :class => "thumb-left2" %>
+	
+
+	<% else %>      	
+					         
+			  <%= image_tag ('/assets/ex/blankmini3.jpg'), :class => "thumb-left" %>		
+<% end %>
+
+                        <div class="media-body">
+
+
+                            <h4 class="rs "><a href='/profile/<%= u.id %>' class="be-fc-orange fw-b"><%= u.username %></a></h4>
+                            <h4 class="rs pb10"><a href='/profile/<%= u.id %>' class="be-fc-orange fw-b">From: <%= u.location %></a></h4>
+
+                            <a class="btn btn-red" href="/profile/<%= u.id %>">View Profile</a>
+</br>
+                        </div>
+
+                    </div>
+</br>
+	<% end%>
+
+                    <div class="media">
+</br>
+                       	 
+		                        <span class="lbl"><%= link_to "View More", '/people/index', :class => 'btn btn-green btn-buck-project' %></span>
+
+		  
+
+                    </div>
+
+                </div>
+            </div><!--end: .project-author -->
+            <div class="clear clear-2col"></div>
+
+        </div><!--end: .sidebar -->
+			
+			<script type="text/javascript">
+			$(document).ready(function() {
+			     $('#myButton').click(function(e) {
+			          e.preventDefault();
+				  $('#myModal').reveal();
+			     });
+			});
+			</script>
+			
+			<div id="fb-root"></div>
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=516849445076378&version=v2.0";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>

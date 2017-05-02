@@ -1,0 +1,88 @@
+<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+         <div class="clear"></div>
+         <div class="container_12 clearfix">
+            <div class="grid_12 header-content">
+               
+<div class="account-panel">
+
+</br></br>
+          
+
+<div class="layout-3cols">
+	<div class="content grid_9">
+		<div class="project-detail">
+			<div class="project-tab-detail tabbable accordion">
+			<ul class="nav nav-tabs clearfix">
+			 	<li class="active"><a href="#">My Recent Activities</a></li>
+			    <li><a href="#" class="be-fc-orange">My Past Activities</a></li>
+			 </ul>
+			
+			
+		 		<div class="tab-content"> <div>
+			
+			    <h3 class="rs alternate-tab accordion-label">Recent Activities</h3>
+			    <div class="tab-pane accordion-content active">
+				<% if @activitynow.empty? %>
+				<a class="btn btn-green btn-buck-project" href="/activities/new">
+                    <span class="lbl">Add an Activity</span>
+                    <span class="desc">and make more friends</span>
+                </a>
+				<% else%>
+					<% @activitynow.each do |a| %>
+						 <%= render :partial => '/general/myactivityinfo2', :locals => {:a => a} %> 
+						<% end %>
+	
+<% end%>
+
+	    </div><!--end: .tab-pane -->
+			                        </div>
+			                        <div>
+			                            <h3 class="rs alternate-tab accordion-label">Past Activities</h3>
+			                            <div class="tab-pane accordion-content">
+	                                        
+													<% if @activitypast.empty? %>
+													
+													You never registered an activity.</br>
+													<a class="btn btn-green btn-buck-project" href="/activities/new">
+									                    <span class="lbl">Add an Activity</span>
+									                    <span class="desc">and make more friends</span>
+									                </a>
+													<% else%>
+				<% @activitypast.each do |a| %>
+					 <%= render :partial => '/general/myactivityinfo2', :locals => {:a => a} %> 
+				
+					<% end %>  <% end%>  
+			 </div><!--end: .tab-pane -->
+			                        </div>
+			                      
+			
+			</div>
+			                </div><!--end: .project-tab-detail -->
+			            </div>
+			        </div><!--end: .content -->
+<a href="/activities/new"><div class="btn btn-red"> Create A New Activity </div></a>
+</br>
+</br>
+<% @activitygrid.each do |a| %>
+	 <%= render :partial => "/start/grid", :locals => {:a => a} %> 
+	<% end %>
+
+			        <div class="clear"></div>
+			
+			    </div>
+	
+
+
+                    </div>
+                </div>
+             </div><!--end: .home-popular-project -->
+
+</div>
+</div>
+</div>
+</div>
+</br></br>
+<%= render "footer/footer" %>
+</div>

@@ -1,0 +1,71 @@
+
+<div class="form login-form">
+
+	<%= form_for(resource, :html => {:id => "form_id"}, :as => resource_name, :url => registration_path(resource_name))  do |f| %>
+	  <%= devise_error_messages! %>
+	
+        <h3 class="rs title-form">Register</h3>
+        <div class="box-white">
+            <h4 class="rs title-box">Create or view Activities Now!</h4>
+            <p class="rs">A Woomatch account is required to continue.</p>
+            <div class="form-action">
+                <label for="txt_name">
+	 <%= f.text_field :username,  :class => "span2 validate[required,minSize[4],maxSize[20]] text-input txt fill-width",:id => "txt_name",  :placeholder => "Enter a screen name" %>
+
+                </label>
+                <div class="wrap-2col clearfix">
+                    <div class="col">
+                        <label for="txt_email">
+					
+						  <%= f.email_field :email, :class => "span2 validate[required,custom[email]] text-input txt fill-width", :id => "txt_email", :placeholder => "Enter your e-mail address" %>
+						
+                        </label>
+                      </br>
+						<label for="txt_re_email">
+                            <%= f.select :sex, [['male'],['Female']],:class => "txt" %>
+                        </label>
+
+<%=  f.hidden_field :location, :value => @loc  %>
+<%= f.hidden_field :nomail, :value => 1 %>
+<%= f.hidden_field :followme, :value => 1 %>
+<%= f.hidden_field :userfollowme, :value => 1 %>
+<%= f.hidden_field :acceptme, :value => 1 %>
+<%= f.hidden_field :partime, :value => 1 %>
+<%= f.hidden_field :alertwoo, :value => 1 %>
+<%= f.hidden_field :nomailreg, :value => 1 %>
+
+                    </div>
+
+                    <div class="col">
+	
+                        <label for="txt_password">
+	
+
+				
+						  <%= f.password_field :password,  :class => "span2 validate[required] text-input txt fill-width",  :id => "txt_password", :placeholder => "Enter password" %>
+
+                        </label>
+                        <label for="txt_re_password">
+	
+						  <%= f.password_field :password_confirmation,  :class => "span2 validate[required,equals[txt_password]] text-input txt fill-width", :id => "txt_re_password",  :placeholder => "Re-enter password" %>
+
+                        </label>
+                    </div>
+                </div>
+                <p class="rs pb10">By signing up, you agree to our <a href="#" class="fc-orange">terms of use</a> and <a href="#" class="fc-orange">privacy policy</a>.</p>
+                <p class="rs ta-c">
+                    
+  <div><%= f.submit "Sign up", :class => "btn btn-red btn-submit"  %> <%= link_to "Connect With Facebook", user_omniauth_authorize_path(:facebook),  :class => 'btn btn-blue btn-submit'  %>   </div> 
+                </p>
+            </div>
+        </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#form_id").validationEngine();
+});
+</script>
+
+

@@ -1,0 +1,30 @@
+
+<div class="section_2"> <div class="tool" data-toggle="tooltip" data-original-title="Woo! An activity was just added"> <%= image_tag 's3.png', :title => 'Woo! An activity was just added' %> </div></div>
+<div class="section_3">
+	<div class="section3_1">
+created	<%= distance_of_time_in_words(@mytime, activity.trackable.created_at) %> ago
+ 	</div>
+<%= link_to activity.owner.name, activity.owner %>
+just added an activity 
+
+<% if activity.trackable.user_id == current_user.id %>
+<%= link_to activity.trackable.title, {:id => activity.trackable.id, :controller => 'activities', :action => 'show' } %>
+<% else %>
+<%= link_to activity.trackable.title, {:id => activity.trackable.id, :controller => 'general', :action => 'activity' } %>
+<% end %>
+</div>
+<div class="section_4">
+	<% if activity.trackable.user_id == current_user.id %>
+<%= link_to image_tag(activity.trackable.avatar.url(:supermini)), {:id => activity.trackable.id, :controller => 'activities', :action => 'show' }  %>  
+	<% else %>
+				<%= link_to image_tag(activity.trackable.avatar.url(:supermini)), {:id => activity.trackable.id, :controller => 'general', :action => 'activity' } %>
+				
+					<% end %>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("img[title]").tooltip();   
+});
+</script>

@@ -1,0 +1,109 @@
+      
+  <div class="grid_4">
+            <div class="project-short sml-thumb">
+                <div class="top-project-info">
+			  
+			  
+			                    <div class="content-info-short clearfix">
+<center>
+			                        <a href="#" class="big_box">
+			       <% if Yactivity.find(a.yactivity_id).avatar.url %> 
+
+			<%= link_to (image_tag Yactivity.find(a.yactivity_id).avatar.url(:grid)), {:controller => 'profile', :action => 'show', :id => a.user_id } %>
+
+
+
+
+								<% else %>
+					
+					
+								<%= image_tag '/assets/ex/peopleblank.jpg', :width => '192', :height => '135' %>
+								<% end %>
+			                        </a>
+			</center>
+			                        <div class="wrap-short-detail">
+			                  <center>          <h3 class="rs acticle-title2"><a class="be-fc-orange" href=''><%= Yactivity.find(a.yactivity_id).name.capitalize %></a></h3></center>
+                           
+                  
+			                            <p class="rs project-location">
+					    	       <%= form_tag({:controller => 'yactivities', :action => 'yesbutton', :id =>  Yactivity.find(a.yactivity_id).id }) do %>
+ 
+
+					    	            <%= submit_tag 'Woo... I like it too!',  :class=>"btn btn-green12" %>
+
+
+					    	        <% end %>
+			
+			                            </p>
+			                        </div>
+						   	<% Interestanswer.where(:answer=>true, :name => Yactivity.find(a.yactivity_id).name).limit(6).each do |u| %>
+		
+							 <%= link_to (image_tag User.find(u.user_id).avatar.url(:supermini),:class => 'img-circle', :height =>'30', :width => '30'), {:controller => 'profile', :action => 'show', :id => u.user_id } %>
+							 <% end %>
+						
+							
+			</br>						
+
+  <%= Interestanswer.where(:answer=>true, :name => Yactivity.find(a.yactivity_id).name).count %> liked this activity.
+
+
+
+										
+										</br>
+
+			                    </div>  
+			  
+			  
+			  </br>
+			  
+                    <div class="content-info-short clearfix">
+<center>
+                        <a href="#" class="big_box">
+				   
+       <% if User.find(a.user_id).avatar.url %> 
+
+<%= link_to (image_tag User.find(a.user_id).avatar.url(:grid), :height => 30, :width => 30, :class => 'circle'), {:controller => 'profile', :action => 'show', :id => a.user_id } %>
+
+
+
+
+					<% else %>
+					
+					
+					<%= image_tag '/assets/ex/peopleblank.jpg', :width => '192', :height => '135' %>
+					<% end %>
+                        </a></center>
+<% if User.find(a.user_id).online? %> 	<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop3' %><% end %>
+                        <div class="wrap-short-detail">
+                            <h3 class="rs acticle-title2"><a class="be-fc-orange" href=""><%= User.find(a.user_id).name.capitalize %></a>&nbsp;/&nbsp;Age: <%= User.find(a.user_id).age %></h3>
+                           
+                  
+                            <p class="rs project-location">
+                                <i class="icon iLocation"></i>
+<% if User.find(a.user_id).location %>
+                                <%= User.find(a.user_id).location[0..15] %>  &nbsp; &nbsp;&nbsp; <%= User.find(a.user_id).distance_from(current_user.location).round(1) %> &nbsp;miles
+<% end%>
+                            </p>
+                        </div>
+
+							
+						
+								<%=  link_to "Profile",  {:controller => 'profile', :action => 'show', :id => a.user_id}, :class=>"btn btn-blue" %>
+
+									
+
+
+
+
+							<% if current_user.following?(User.find(a.user_id)) %>
+							<div class="btn btn-red"> <%= link_to "Unfollow", unfollow_profile_path(a.user_id) %> </div>
+							<% else %>		
+							<div class="btn btn-red"> <%= link_to "Follow", follow_profile_path(a.user_id) %> </div>
+							<% end %>
+					
+							</br>
+
+                    </div>
+                </div>
+         </div>
+        </div><!--end: .grid_3 > .project-short-->

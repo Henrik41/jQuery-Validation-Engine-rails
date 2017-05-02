@@ -1,0 +1,14 @@
+$("#spinner, #search_button").toggle();
+$(".theform").hide();
+$("#button_out").show();
+$("#select_button").show().empty().append('<select id="picture" name="picture"><% @embed_photo.each do |p| %><option data-img-src="<%= p %>"  value="<%=p%>" ><%= p %></option><% end%></select>');
+$('#paginator').show().html('<%= escape_javascript(paginate(@embed_photo, :remote => true).to_s) %>');
+$("select").imagepicker();
+$("select").css('display','inline-block');
+$("#picture").hide();
+
+
+
+
+
+

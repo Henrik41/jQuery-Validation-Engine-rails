@@ -1,0 +1,32 @@
+
+	
+<div class="project-short sml-thumb">
+					 <div class="top-project-info">
+                           <div class="content-info-short clearfix">
+								<h3>Hey <%= current_user.username %> Look WOO's checking your profile!</h3>
+								<div class ="small_images_content" >
+								<% @myvisit.each do |u| %>
+							              
+							<% if u.avatar? %>
+						<div class="small_images">
+							<%= link_to (image_tag (u.avatar.url(:supermini)), :width => '75', :height => '75', :class => 'onbottom'), :controller => 'profile', :action => 'show', :id => u.id %> 
+							
+							<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop' %>
+						
+							</div>
+							<% else %>
+								<div class="small_images">
+							<%= link_to (image_tag '/assets/ex/blankmini2.jpg', :width => '75', :height => '75',:class => 'onbottom'), :controller => 'profile', :action => 'show', :id => u.id  %>
+								<%= image_tag '/assets/Greenlight2.gif', :class => 'ontop' %>
+									</div>
+							<% end%>
+						
+							
+							
+								<% end %>
+								
+</div>
+							</div>
+							</div>	</div>	
+
+<center> <a href="/people/index" class="btn btn-green">View More People</a> </center>	

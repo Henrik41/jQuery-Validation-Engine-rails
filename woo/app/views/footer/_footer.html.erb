@@ -1,0 +1,274 @@
+<footer id="footer" >
+    <div class="container_12 main-footer">
+        <div class="grid_3 about-us">
+            <h3 class="rs title">Want help to promote your event?</h3>
+            <p class="rs description">Woomatch can help you promote your activity or event. Just contact us and we will help you contact thousands of real members ready to join you. </p>
+            <p class="rs email"><a class="fc-default  be-fc-orange" href="mailto:info@woomatch.com">info@Woomatch.com</a></p>
+            <p class="rs">+1 (800) 555-5555 </p>
+        </div><!--end: .contact-info -->
+        <div class="grid_3 recent-tweets">
+            <h3 class="rs title">Connect</h3>
+          
+   <a href="https://plus.google.com/111830894057840760120" rel="publisher"><%= image_tag ('/assets/14_google.png') %> </a>
+            
+		   <a href="https://www.facebook.com/woomatch" rel="publisher"><%= image_tag ('/assets/02_facebook.png') %> </a>      
+           
+		   <a href="https://www.twitter.com/woomatch" rel="publisher"><%= image_tag ('/assets/01_twitter.png') %> </a>
+		
+		  <a href="https://www.youtube.com/watch?v=WePo5I_0CcQ" rel="publisher"><%= image_tag ('/assets/03_youtube.png') %> </a>
+		
+		<a href="http://vimeo.com/103572289" rel="publisher"><%= image_tag ('/assets/09_vimeo.png') %> </a>
+			<a href="http://flickr.com" rel="publisher"><%= image_tag ('/assets/16_flickr.png') %> </a>
+       
+        </div><!--end: .recent-tweets -->
+        <div class="clear clear-2col"></div>
+        <div class="grid_3 email-newsletter">
+            <h3 class="rs title">Newsletter Signup</h3>
+            <div class="inner">
+                <p class="rs description">Signup for new promotions and activities in your area.</p>
+
+
+				<%= form_tag({:controller => '/general', :action => 'newsletter'},  :class => 'form form-email',  :remote => true) do %>
+				<label class="lbl" for="txt-email">
+					<%= text_field_tag :email, '', :id => 'txt-email', :class=>'txt fill-width', :size => '16', :placeholder => 'Enter your e-mail address' %> 
+   </label>
+				     <%= submit_tag 'Submit',  :class=>"btn btn-green" %>
+
+
+               <% end %>
+            </div>
+        </div><!--end: .email-newsletter -->
+        <div class="grid_3">
+            <h3 class="rs title">Discover &amp; Promote new activities</h3>
+            <div class="footer-menu">
+                <ul class="rs">
+                    <li><a class="be-fc-orange" href="/info/about">What is WooMatch</a></li>
+                    <li><a class="be-fc-orange" href="#">Start an Activity</a></li>
+                    <li><a class="be-fc-orange" href="#">Project Guidelines</a></li>
+                    <li><a class="be-fc-orange" href="#">Press</a></li>
+                
+                </ul>
+                <ul class="rs">
+                    <li><a class="be-fc-orange" href="#">Staff Picks</a></li>
+                    <li><a class="be-fc-orange" href="#">Popular</a></li>
+                    <li><a class="be-fc-orange" href="#">Recent</a></li>
+
+                     </a></li>
+                </ul>
+
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="copyright">
+        <div class="container_12">
+            <div class="grid_12">
+                <a class="logo-footer" href="index.html"><%= image_tag "images/logo-2.png" %></a>
+                <p class="rs term-privacy">
+                    <a class="fw-b be-fc-orange" href="single.html">Terms & Conditions</a>
+                    <span class="sep">/</span>
+                    <a class="fw-b be-fc-orange" href="single.html">Privacy Policy</a>
+                    <span class="sep">/</span>
+                    <a class="fw-b be-fc-orange" href="#">FAQ</a>
+                </p>
+                <p class="rs ta-c fc-gray-dark site-copyright">Copyright by <a href="http://woomatch.com" title="Activity near you" target="_blank">Woomatch</a>. Designed by <a href="http://woomatch.com/" title="Meet people near you" target="_blank">Woomatch</a>.</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</footer><!--end: #footer -->
+
+
+<script>
+/**
+ * notificationFx.js v1.0.0
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * Copyright 2014, Codrops
+ * http://www.codrops.com
+ */
+;( function( window ) {
+	
+	'use strict';
+
+	var docElem = window.document.documentElement,
+		support = { animations : Modernizr.cssanimations },
+		animEndEventNames = {
+			'WebkitAnimation' : 'webkitAnimationEnd',
+			'OAnimation' : 'oAnimationEnd',
+			'msAnimation' : 'MSAnimationEnd',
+			'animation' : 'animationend'
+		},
+		// animation end event name
+		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ];
+	
+	/**
+	 * extend obj function
+	 */
+	function extend( a, b ) {
+		for( var key in b ) { 
+			if( b.hasOwnProperty( key ) ) {
+				a[key] = b[key];
+			}
+		}
+		return a;
+	}
+
+	/**
+	 * NotificationFx function
+	 */
+	function NotificationFx( options ) {	
+		this.options = extend( {}, this.options );
+		extend( this.options, options );
+		this._init();
+	}
+
+	/**
+	 * NotificationFx options
+	 */
+	NotificationFx.prototype.options = {
+		// element to which the notification will be appended
+		// defaults to the document.body
+		wrapper : document.body,
+		// the message
+		message : 'yo!',
+		// layout type: growl|attached|bar|other
+		layout : 'growl',
+		// effects for the specified layout:
+		// for growl layout: scale|slide|genie|jelly
+		// for attached layout: flip|bouncyflip
+		// for other layout: boxspinner|cornerexpand|loadingcircle|thumbslider
+		// ...
+		effect : 'slide',
+		// notice, warning, error, success
+		// will add class ns-type-warning, ns-type-error or ns-type-success
+		type : 'error',
+		// if the user doesn´t close the notification then we remove it 
+		// after the following time
+		ttl : 6000,
+		// callbacks
+		onClose : function() { return false; },
+		onOpen : function() { return false; }
+	}
+
+	/**
+	 * init function
+	 * initialize and cache some vars
+	 */
+	NotificationFx.prototype._init = function() {
+		// create HTML structure
+		this.ntf = document.createElement( 'div' );
+		this.ntf.className = 'ns-box ns-' + this.options.layout + ' ns-effect-' + this.options.effect + ' ns-type-' + this.options.type;
+		var strinner = '<div class="ns-box-inner">';
+		strinner += this.options.message;
+		strinner += '</div>';
+		strinner += '<span class="ns-close"></span></div>';
+		this.ntf.innerHTML = strinner;
+
+		// append to body or the element specified in options.wrapper
+		this.options.wrapper.insertBefore( this.ntf, this.options.wrapper.firstChild );
+
+		// dismiss after [options.ttl]ms
+		var self = this;
+		this.dismissttl = setTimeout( function() {
+			if( self.active ) {
+				self.dismiss();
+			}
+		}, this.options.ttl );
+
+		// init events
+		this._initEvents();
+	}
+
+	/**
+	 * init events
+	 */
+	NotificationFx.prototype._initEvents = function() {
+		var self = this;
+		// dismiss notification
+		this.ntf.querySelector( '.ns-close' ).addEventListener( 'click', function() { self.dismiss(); } );
+	}
+
+	/**
+	 * show the notification
+	 */
+	NotificationFx.prototype.show = function() {
+		this.active = true;
+		classie.remove( this.ntf, 'ns-hide' );
+		classie.add( this.ntf, 'ns-show' );
+		this.options.onOpen();
+	}
+
+	/**
+	 * dismiss the notification
+	 */
+	NotificationFx.prototype.dismiss = function() {
+		var self = this;
+		this.active = false;
+		clearTimeout( this.dismissttl );
+		classie.remove( this.ntf, 'ns-show' );
+		setTimeout( function() {
+			classie.add( self.ntf, 'ns-hide' );
+			
+			// callback
+			self.options.onClose();
+		}, 25 );
+
+		// after animation ends remove ntf from the DOM
+		var onEndAnimationFn = function( ev ) {
+			if( support.animations ) {
+				if( ev.target !== self.ntf ) return false;
+				this.removeEventListener( animEndEventName, onEndAnimationFn );
+			}
+			self.options.wrapper.removeChild( this );
+		};
+
+		if( support.animations ) {
+			this.ntf.addEventListener( animEndEventName, onEndAnimationFn );
+		}
+		else {
+			onEndAnimationFn();
+		}
+	}
+
+	/**
+	 * add to global namespace
+	@notifuser.avatar.url(:supermini)
+	
+	 */
+	window.NotificationFx = NotificationFx;
+
+} )( window );
+</script>
+
+
+<script>
+$(document).ready(function() {
+
+					
+					
+					var notification = new NotificationFx({
+						
+						<% if user_signed_in? %>
+							<% if current_user.alertwoo %>
+						message : '<p style="font-size:15px; font-weight:bold;  margin-bottom:5px;"><%= @notifuser.username %> just sent a <a href="/notif/index" class= "btn btn-red">Wooshout!</a> </p> <span style= "font-size:15px; font-weight:bold; display-inline;"><%= image_tag(@notifuser.avatar.url(:supermini), :height =>'40', :width => '40') %> &nbsp; <b><%= @notif[0..26] %> ...</b></span>',
+					 
+						
+						layout : 'growl',
+						effect : 'slide',
+						type : 'notice'}); 
+						notification.show()
+						<% end %>
+				   <% end %>
+		
+								});
+
+
+</script>
+
+
+

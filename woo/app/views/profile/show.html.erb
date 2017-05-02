@@ -1,0 +1,306 @@
+	<div id="wrapper">
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>
+	
+         <div class="clear"></div>
+
+		  	<div class="home-popular-project">
+		        <div class="container_12">
+		            <div class="grid_12 wrap-title">
+
+
+
+				  <h2 class="common-title"> <%= @userview.username.capitalize %>'s Profile</h2>
+				    </div>
+
+		            <div class="clear"></div>
+		            <div class="lst-popular-project clearfix">
+		                <div class="grid_3">
+		                    <div class="project-short sml-thumb">
+		                        <div class="top-project-info">
+		                            <div class="content-info-short clearfix">
+
+		      				       		         
+<% if @userview.avatar? %>
+<a class="fancybox" rel="group" href='<%= @userview.avatar.url%>' title = '<%= @userview.username %>' %>	<%= image_tag @userview.avatar.url(:big) %>
+<%else%>
+<%= image_tag '/assets/ex/blank.jpg' %>
+<%end%>
+									</div>
+								</div>
+
+
+
+
+<div class="bottom-project-info clearfix">       
+<% if current_user.id == @userview.id %>
+<% else%>
+
+	<% if current_user.voted_on? @userview %>
+		<%=  link_to_modal "Email", "#demo-form", :class=>"btn btn-blue" %>
+
+			<div id="demo-form" class="demo-description" style="display: none; ">
+			  <p>
+
+			<b>Please unblock this user first.</b>
+				    <br />
+
+			  </p>
+			</div>
+	
+	<% else%>
+	
+<% if @userview.voted_on? current_user %>
+	<%=  link_to_modal "Email", "#demo-form", :class=>"btn btn-blue" %>
+	
+		<div id="demo-form" class="demo-description" style="display: none; ">
+		  <p>
+
+		<b>	 This user is unavailable.</b>
+			    <br />
+			  
+		  </p>
+		</div>
+
+
+<% else %>
+	<%=  link_to_modal "Email", "#demo-form", :class=>"btn btn-blue" %>
+	
+		<div id="demo-form" class="demo-description" style="display: none; ">
+		  <p>
+
+		<b>	 Write me an Email</b>:
+			    <br />
+			  
+
+		
+
+				
+				<div class="theform">
+												<%= form_tag({:controller => 'conversation', :action => 'sendmail', :id => @userview.id}, :remote => true) do %>
+								<%= text_area_tag :body, nil, :cols => '50', :rows => '10' %>			
+												
+												<%= button_tag(type: 'submit', id: "search") do %>
+							
+												
+<span class="btn btn-green">Send it</span> 
+												<% end%> 
+												<% end%>
+</div>
+
+
+
+	
+		  </p>
+		</div>
+
+	
+<% end %>
+<% end %>
+		
+<% if current_user.following?(@userview) %>
+<div class="btn btn-red"> <%= link_to "Unfollow", unfollow_profile_path(@userview.id) %> </div>
+<% else %>		
+<div class="btn btn-red"> <%= link_to "Follow", follow_profile_path(@userview.id) %> </div>
+<% end %>
+
+<% if current_user.voted_on? @userview %>
+
+<div class="btn btn-black" ><%= link_to 'Unblock', {:controller => 'profile', :action => 'unblock', :id => @userview.id}, {:style =>'color:#ffffff'}    %></div>
+<% else %>
+<div class="btn btn-black" ><%= link_to 'Block', {:controller => 'profile', :action => 'block', :id => @userview.id}, {:style =>'color:#ffffff'}    %></div>
+<% end %>
+
+
+<% end %>
+
+
+</br>
+
+		           <%=@userview.sex%></br> Age: <%=  @userview.age  %> </br>
+	
+		  <%= @userview.status %></br>
+		                    
+		
+																				                            
+<div class="line-progress">																				                           													
+<div class="bg-progress"></div> 
+																				                      
+</div>
+																											 Profile Completion
+														<%= @completion2 %> %									                            <div class="line-progress">
+																						                                <div class="bg-progress">
+																					                                    <span class="success" style="width: <%= @completion %>%;"></span>
+																						                                </div>
+																						                            </div>  <!-- bottom clearfix -->
+																						                            <div class="group-fee clearfix">
+
+
+																						                                <div class="fee-item">
+																						                                    <p class="rs lbl">Nb Activities</p>
+																						                                    <span class="val"><%= @activitiescount %></span>
+																						                                </div>
+																						                                <div class="sep"></div>
+																						                                <div class="fee-item">
+																						                                    <p class="rs lbl">Interests</p>
+																						                                    <span class="val"><%= @interestcount  %> </span>
+																						                                </div>
+																						                                <div class="sep"></div>
+																						                                <div class="fee-item">
+																						                                    <p class="rs lbl">Since</p>
+																						                                    <span class="val"><%=distance_of_time_in_words(@userview.created_at,Time.now)%></span>
+																						                                </div>
+																						                            </div> 
+																						                        
+		
+</div> <!-- project short -->
+		                    </div>
+
+							<%= render 'activities/myfriends'%>
+				
+
+		             </div><!--end: .grid_3 > .project-short-->
+
+
+<div class="grid_6">
+			<div class="project-tab-detail tabbable accordion">
+							<ul class="nav nav-tabs clearfix">
+							 	<li class="active"><a href="#">About Me</a></li>			
+							    <li><a href="#" class="be-fc-orange">My Album</a></li>
+						    	<li> <a href="#" class="be-fc-orange">Dare to Ask</a></li>
+							</ul>
+							
+			<div class="tab-content"> 
+							 	<div>
+				
+							<div class="tab-pane accordion-content active">
+		                    <div class="project-short sml-thumb">
+
+
+
+		  								<div class="form form-profile">
+		                            <h2> About me:</h2>   
+<%= @userview.about %>
+		</br>
+
+
+		         <h2> Interests:</h2>  
+		                               <% @userview.userinterests.each do |x| %>
+		 <a class="btn btn-white">	<%= x.interest.capitalize %> 	</a>
+		
+		
+			<% end %>
+		
+
+									<h3>Where is <%=@userview.username%>?</h3> 
+									</br><h1><%=@userview.location %></h1>
+									<%= @myip %>
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@userview.latitude}%2C#{@userview.longitude}" %>  
+				                   </div>
+
+		                        <div class="bottom-project-info clearfix">
+								</br> </br>  </br> </br>  Profile Completion
+<%= @completion %> %									                            <div class="line-progress">
+			                                <div class="bg-progress">
+		                                    <span style="width: <%= @completion %>%;"></span>
+			                                </div>
+			                            </div>
+			                            <div class="group-fee clearfix">
+				
+			
+			                                <div class="fee-item">
+			                                    <p class="rs lbl">Nb Activities</p>
+			                                    <span class="val"><%= @activitiescount %></span>
+			                                </div>
+			                                <div class="sep"></div>
+			                                <div class="fee-item">
+			                                    <p class="rs lbl">Interests</p>
+			                                    <span class="val"><%= @interestcount  %> </span>
+			                                </div>
+			                                <div class="sep"></div>
+			                                <div class="fee-item">
+			                                    <p class="rs lbl">Since</p>
+			                                    <span class="val"><%=distance_of_time_in_words(@userview.created_at,Time.now)%></span>
+			                                </div>
+			                            </div>
+			                </div>
+					
+							</div>            	 
+							
+								</div>
+			
+								<div>
+								<div class="tab-pane accordion-content">
+									</br></br>
+									<center>
+								<% @myalbumpics.each do |p| %>
+							<a class="fancybox" rel="group" href='<%= p.avatar.url%>' title = '<%= @userview.username %>' %>	<%= image_tag p.avatar.url(:grid) %></a>
+								<%end%>
+								</br></br>
+								</center>
+								</div>
+								
+									<div class="tab-pane accordion-content">
+										</br></br>
+										
+										<center><h1> Feature to come soon </h1></center>
+									<!-- <center>	<%=  link_to_modal "ASK A QUESTION", "#demo-form-question", :class=>"btn btn-green" %> </center>
+										</br>
+										<% @question_set.each do |q| %>
+										<h3> <b> <i> <%= q.question %> </i></b></h3>
+										 <%= q.answer %>
+										</br>
+										<% end %> -->
+									</div>
+									
+								</div>
+			</div> <!-- tab content -->
+             		
+			</div>
+</div>
+
+
+<div id="demo-form-question" style="display: none;">
+	<%= render '/dares/new' %>
+	
+</div>
+
+
+</div> <!--end: .grid_6 -->
+		             
+				
+					
+		               	<div class="clear clear-2col"></div>
+		
+		         	<% @activitygrid.each do |a| %>
+						 <%= render :partial => "/start/grid2", :locals => {:a => a} %> 
+						<% end %>
+</br>
+						</div> 
+	 				</div>
+</br>
+				</div>
+		        </div>
+		    
+			</div>
+
+		   
+
+	<div class="clear"></div>
+
+
+<%= render 'footer/footer'%>
+</div> <!--div wrapper -->
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
+	});
+</script>
+
+
+<script>
+<%= add_gritter('has '+@interestcom.to_s+' interests in common wih you', :image => @userview.avatar.url(:supermini), :time => 4000, :title => @userview.username) %>
+<%= extend_gritter :position => :bottom_right %>
+</script>

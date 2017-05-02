@@ -1,0 +1,247 @@
+
+<% if params[:id] == "1" || @randomyactivity.nil?  %>
+
+
+
+<% else %>
+<div id="myModal2" class="modal hide fade" tabindex="-1"   aria-hidden="true">
+
+
+
+<div class="modal-body">
+
+
+	
+	
+    
+
+
+	
+	
+<center>
+	
+	<h2>I Woo for</h2>
+	
+	<h2> <%= @yactivities.name.capitalize%></h2> 
+
+</center>
+		<div class="content grid_12">
+<center>
+  <%= image_tag @yactivities.avatar.url(:thumb), :class => "circular" %> 
+  
+  
+</br>
+</br>
+
+<div class="content grid_6">
+		
+	       <%= form_tag({:controller => 'yactivities', :action => 'yesbutton', :id => @yactivities.id }) do %>
+ 
+
+	            <%= submit_tag 'yes',  :class=>"btn btn-green12" %>
+
+
+	        <% end %>
+		 
+</div>		 
+
+<div class="content grid_6">
+	
+ 	       <%= form_tag({:controller => 'yactivities', :action => 'nobutton',  :id => @yactivities.id }) do %>
+ 
+
+ 	            <%= submit_tag 'NIET',  :class=>"btn btn-red12" %>
+
+
+ 	        <% end %>
+
+</div>	
+		 
+
+		 
+		 </center>
+		</div>
+	
+
+	 
+	</div>
+	
+
+
+
+</div>
+<% end %>
+<div id="wrapper">
+<% if @notification %>
+<%= js add_gritter('Thank you for your email. You make Woomach a better place!', :image => current_user.avatar.url(:supermini), :time => 4000, :title => 'Email was sent successfully') %>
+<%= js extend_gritter :position => :upper_right %>
+<% end %>
+
+
+<%= render "header/header" %>
+<%= render 'activities/navbar' %>	
+         <div class="clear"></div>
+		  <div class="home-popular-project">
+		        <div class="container_12">
+		            <div class="grid_12 wrap-title">
+		                <h4><a class="be-fc-orange" href="/search/activitysearch">Hey check up what new today <%= @mytime.strftime("%B %d, %Y") %></a><h4>
+				  <h2 class="common-title2">Welcome Back <%= current_user.username%></h2>
+				    </div>		
+		            <div class="lst-popular-project clearfix">
+		        <div class="grid_3">
+		                    <div class="project-short sml-thumb">
+		<div class="top-project-info">
+		<div class="content-info-short clearfix">
+										<h3>You Have:</h3>
+										
+    	    <div class='mypanel'>
+		                                    <h3 >
+			<div class="left-panel"><a class="be-fc-orange" href="/follow/ifollow"> Followers&nbsp; &nbsp;
+			</div>
+			<div class="right-panel"><span class="orange2" > &nbsp;&nbsp;<%= current_user.followers_count %></span></a>
+			</div>
+			</div>
+
+	    	  <div class='mypanel'>
+		 <h3 >
+			<div class="left-panel">
+				<a class="be-fc-orange" href="/follow/ifollow"> Following&nbsp; &nbsp;</div><div class="right-panel"><span class="orange2" >&nbsp;&nbsp;<%= current_user.following_by_type_count('User')%> </span></a>
+			</div>
+		  </div>
+
+			 <div class='mypanel'>
+			 <h3 >
+				<div class="left-panel"><a class="be-fc-orange" href="/profile/edit"> Interests&nbsp; &nbsp;
+				</div>
+				<div class="right-panel"><span class="orange2" > &nbsp;&nbsp;<%= current_user.userinterests.count %></span></a>
+				</div>
+			 </div>
+			  
+			  <div class='mypanel'>
+				 <h3 >
+					<div class="left-panel">
+						<a class="be-fc-orange" href="/activities/myactivities"> Activities&nbsp; &nbsp;
+					</div>
+					<div class="right-panel"><span class="orange2" >&nbsp;&nbsp;<%= current_user.activities.count %> </span></a>
+					</div>
+				</div></br>
+	   				</div>
+				</div>
+
+		                    <div class="bottom-project-info clearfix"> Profile Completion
+									<%= @completion %> %									                            <div class="line-progress">
+																	                                <div class="bg-progress">
+																                                    <span style="width: <%= @completion %>%;"></span>
+																	                                </div>
+																	                            </div>
+																	
+																	                            <div class="group-fee clearfix">
+
+
+																	                                <div class="fee-item">
+																	                                    <p class="rs lbl">Nb Activities</p>
+																	                                    <span class="val"><%= @activitiescount %></span>
+																	                                </div>
+																	                                <div class="sep"></div>
+																	                                <div class="fee-item">
+																	                                    <p class="rs lbl">Interests</p>
+																	                                    <span class="val"><%= @interestcount  %> </span>
+																	                                </div>
+																	                                <div class="sep"></div>
+																	                                <div class="fee-item">
+																	                                    <p class="rs lbl">Since</p>
+																	                                    <span class="val"><%=distance_of_time_in_words(@user.created_at,Time.now)%></span>
+																	                                </div>
+																	                            </div>
+																	
+		                        </div>
+		                    </div>
+	<%= render 'activities/myfriends'%>	
+	</br>
+	<%= render 'activities/myvisits2' %>					
+
+		        </div><!--end: .grid_3 > .project-short-->
+	<div class='mypanel'>	
+		<div class= "wrapper-box">
+           <div class="right-panel2">
+					
+		
+				<div class="grid_12">
+					<div class="content-info-short clearfix">
+						
+					<% @activitynow.each do |a| %>
+						 <%= render :partial => '/general/myactivityinfo4', :locals => {:a => a} %> 
+					<% end %>
+						
+						
+						
+					 </div> <!--content-info-short clearfix -->
+					 
+					 <div class="pagme"> <%= paginate @activitynow %></div>
+					 
+				</div><!--grid_12-->
+					 
+				
+				    	 	
+			    </div>	
+					
+			
+			
+						    	
+			
+			</div>	
+			
+					
+
+	    	</div>
+	</div> 	
+				</div>
+		
+	<div class="clearfix"></div>
+		  </div><!--end: .home-popular-project -->
+
+<%= render 'footer/footer'%>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+$('#myModal2').modal().css(
+          {
+              'margin-top': function () {
+                  return window.pageYOffset-($(this).height() / 2 );
+              }
+          });
+</script>
+
+
+<script>
+$(document).ready(function() {
+	$('.standard').hover(
+		function(){
+			$(this).find('.caption').show();
+		},
+		function(){
+			$(this).find('.caption').hide();
+		}
+	);
+	$('.fade').hover(
+		function(){
+			$(this).find('.caption').fadeIn(250);
+		},
+		function(){
+			$(this).find('.caption').fadeOut(250);
+		}
+	);
+	$('.slide').hover(
+		function(){
+			$(this).find('.caption').slideDown(250);
+		},
+		function(){
+			$(this).find('.caption').slideUp(250);
+		}
+	);
+});
+</script>

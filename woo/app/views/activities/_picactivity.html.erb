@@ -1,0 +1,6 @@
+
+<script>
+document.getElementById("file").onchange = function() {
+    document.getElementById("edit_activity_"+ <%= @album.to_s %>).submit();
+}
+</script>
